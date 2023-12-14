@@ -1,0 +1,1921 @@
+<!doctype html>
+<html lang="en">
+{% load mathfilters %}
+
+<head>
+
+    <!-- <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"> -->
+    <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+    <link rel="icon" href="/static/logo/favicon.ico" type="image/x-icon">
+    {% with st=list.state_name %}
+    <link rel="canonical" href="https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}/">
+    {% endwith %}
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover the cost of living in {{list.Name}}. Explore essential expenses, housing, transportation, and more. Plan your budget effectively for a comfortable lifestyle in this vibrant city.">
+    <meta name="keywords" content="living cost in {{list.Name}}, cost of living in {{list.Name}}, living expenses of {{list.Name}}, affordable living in {{list.Name}}, high cost of living in {{list.Name}}, living cost index of {{list.Name}}, {{list.Name}} cost of living comparison, {{list.Name}} living cost calculator, {{list.Name}} living cost analysis">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Cost of Living in {{list.Name}}</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+    <!-- Include Font Awesome for icons -->
+    <style>
+        .card-au-ci {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            margin: 10px;
+            /* Add margin */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            background-color: #2b2b2b;
+            color: #ffffff;
+        }
+
+        .card-au-ci img {
+            width: 70px;
+            height: 70px;
+            margin-right: 20px;
+            border-radius: 50%;
+            /* Makes the image circular */
+            object-fit: cover;
+        }
+
+        .card-au-ci .info {
+            flex-grow: 1;
+        }
+
+        .card-au-ci h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .card-au-ci p {
+            margin: 0;
+        }
+
+        .card-bk-aa {
+            background-color: #2b2b2b;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
+        }
+
+        .card-bk-aa a {
+            color: #ffffff;
+            margin-left: 10px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .card-bk-aa a:hover {
+            color: #ccc;
+        }
+
+
+        @media (max-width: 767px) {
+            .card-au-ci {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 10px;
+                margin: 0%;
+            }
+
+            .card-au-ci img {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .card-bk-aa {
+                margin-left: 0%;
+                margin-right: 0%;
+            }
+        }
+    </style>
+    <!--
+    <script type="application/ld+json">
+
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Bread, 0.5 kg or 1.1 lb",
+              "description": "Buy Bread at a price of {{list.Bread}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "BREAD"
+              },
+              "sku": "12",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Bread}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Milk, 1 L or 1 qt",
+              "description": "Buy milk at a price of {{list.Milk}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "MILK"
+              },
+              "sku": "27",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Milk}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Rice, 1 kg or 2.2 lb",
+              "description": "Buy rice at a price of {{list.Rice}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "RICE"
+              },
+              "sku": "17",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Rice}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Eggs, x12",
+              "description": "Buy egg at a price of {{list.Eggs}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "EGG"
+              },
+              "sku": "26",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Eggs}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Cheese, 1 kg or 2.2 lb",
+              "description": "Buy cheese at a price of {{list.Cheese}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "CHEESE"
+              },
+              "sku": "31",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Cheese}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Chicken Breast, 1 kg or 2.2 lb",
+              "description": "Buy chicken at a price of {{list.Chicken}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "CHICKEN"
+              },
+              "sku": "21",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Chicken}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name":  "Round Steak, 1 kg or 2.2 lb",
+              "description": "Buy Round Steak at a price of {{list.Round_Steak}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "ROUND-STEAK"
+              },
+              "sku": "29",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Round_Steak}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name":  "Apples, 1 kg or 2.2 lb",
+              "description": "Buy apples at a price of {{list.Apples}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "EAT-APPLE"
+              },
+              "sku": "35",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Apples}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name":  "Banana, 1 kg or 2.2 lb",
+              "description": "Buy banana at a price of {{list.Banana}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "BANANA"
+              },
+              "sku": "37",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Banana}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name":  "Oranges, 1 kg or 2.2 lb",
+              "description": "Buy oranges at a price of {{list.Oranges}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "ORANGES"
+              },
+              "sku": "42",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Oranges}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name":  "Tomato, 1 kg or 2.2 lb",
+              "description": "Buy tomato at a price of {{list.Tomato}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "TOMATO"
+              },
+              "sku": "52",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Tomato}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Potato, 1 kg or 2.2 lb",
+              "description": "Buy potato at a price of {{list.Potato}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "POTATO"
+              },
+              "sku": "53",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Potato}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Onion, 1 kg or 2.2 lb",
+              "description": "Buy onion at a price of {{list.Onion}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "ONION"
+              },
+              "sku": "59",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Onion}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Water, 1 L or 1 qt",
+              "description": "Buy water at a price of {{list.Water}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "WATER"
+              },
+              "sku": "73",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Water}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Coca-Cola / Pepsi, 2 L or 67.6 fl oz",
+              "description": "Buy Coca-Cola / Pepsi at a price of {{list.Coca_Cola_Pepsi}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "BEVERAGES"
+              },
+              "sku": "77",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Coca_Cola_Pepsi}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Wine (mid-priced), 750 mL bottle",
+              "description": "Buy wine at a price of {{list.Wine_mid_price}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "WINE"
+              },
+              "sku": "64",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Wine_mid_price}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Beer, 0.5 L or 16 fl oz",
+              "description": "Buy beer at a price of {{list.Beer}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "BEER"
+              },
+              "sku": "66",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Beer}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Cigarette pack",
+              "description": "Buy cigarette pack at a price of {{list.Cigarette_pack}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "CIGARETTE"
+              },
+              "sku": "68",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Cigarette_pack}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Cold medicine, 1 week",
+              "description": "Buy cold medicince at a price of {{list.Cold_medicince}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "COLD-MEDICINE"
+              },
+              "sku": "92",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Cold_medicince}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Hair Shampoo",
+              "description": "Buy hair shampoo at a price of {{list.Hair_Shampoo}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "HAIR-SHAMPOO"
+              },
+              "sku": "97",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Hair_Shampoo}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Toilet paper, 4 rolls",
+              "description": "Buy 4 rolls of toilet pape at a price of {{list.Toilet_paper}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "TOILET_PAPER"
+              },
+              "sku": "94",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Toilet_paper}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          },
+          {
+              "@context": "https://schema.org/", 
+              "@type": "Product", 
+              "name": "Toothpaste, 1 tube",
+              "description": "Buy 1 tube of toothpaste at a price of {{list.Toothpaste}} USD.",
+              "brand": {
+                  "@type": "Brand",
+                  "name": "TOOTHPASTE"
+              },
+              "sku": "101",
+              "offers": {
+                  "@type": "Offer",
+                  "url": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}",
+                  "priceCurrency": "USD",
+                  "price": "{{list.Toothpaste}}",
+                  "priceValidUntil": "2025-09-03",
+                  "availability": "https://schema.org/InStock"
+              }
+          }
+        ]
+      }
+      </script>
+      -->
+      
+      <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "{% with st=list.state_name %}https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{st}}{% endif %}/{{list.Name}}{% endwith %}"
+          },
+          "headline": "Cost of Living in {{list.Name}}",
+          "description": "Discover the cost of living in {{list.Name}}. Explore essential expenses, housing, transportation, and more. Plan your budget effectively for a comfortable lifestyle in this vibrant city/state/country.",
+          "image": "https://indexofliving.com/static/media/city/{{list.Name|lower}}.jpg",  
+          "author": {
+              "@type": "Organization",
+              "name": "Emma Davis",
+              "url": "https://indexofliving.com/author/Emma-Davis"
+          },  
+          "publisher": {
+              "@type": "Organization",
+              "name": "Indexofliving",
+              "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://indexofliving.com/static/logo/logo_400_100.svg"
+              }
+          },
+          "datePublished": "{{author.date}}"
+      }
+      </script>
+
+
+
+
+</head>
+
+<body>
+    
+    <a class="sr-only sr-only-focusable" href="#content">Skip to content</a>
+    <nav class="header-main">
+        <div class="container-xl">
+            <div class="row align-items-center p-2">
+                <div class="col-4 order-1 col-md-2 order-md-1 mb-2 mb-md-0">
+                    <div class="table-margin">
+                        <div class="logo">
+                            <img src="/static/logo/logo_400_100.svg" alt="site logo">
+                         
+                        </div>
+                    </div>
+                </div>
+                <!-- add class  custom-mobile-center bellow 👇 -->
+                <div class="col-10 order-3 col-md-5 order-md-2">
+                    <div class="table-margin">
+                        <!-- <form id="navSearch" class="js-search-container" method="post" action="{% url 'submit_form' %}">
+                            {% csrf_token %}
+                            <div class="position-relative d-inline-block search-wrap-navbar">
+                                <input type="text" list="citylist" class="form-control search-input mr-1" id="inp_field"
+                                    placeholder="🔍 city or country" name="sel1">
+                                <datalist id="citylist">
+                                    {% for res in list %}
+                                    <option value="{{res.Name}}"></option>
+                                    {% endfor %}
+                                    {% for res in dict_list1 %}
+                                    <option value="{{res.Name}}"></option>
+                                    {% endfor %}
+                                </datalist>
+
+                                <div class="dropdown-menu search-dropdown" style="display:none"></div>
+                            </div>
+
+                            <button type="submit" class="btn-orange btn-search">Search </button>
+                        </form> -->
+                    </div>
+                </div>
+              
+                <div class="col-8 order-2 col-md-3 order-md-3 mb-2 mb-md-0 text-right">
+                    <div class="table-margin">
+                        <a class="mr-3" href="/">Cost of living</a>
+                        <a href="/best/">Best</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+   
+    <div class="container-xl main-content">
+        <main>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"> <a
+                        href="https://indexofliving.com/" itemprop="item"> <span itemprop="name">Cost of living</span> </a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"> <a
+                        href="https://indexofliving.com/cost/{{list.country_name}}" itemprop="item"> <span itemprop="name">{{list.country_name}}</span> </a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                  
+                    {% with st=list.state_name %}
+                    {% if st != '-' %}
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"> <a
+                        href="https://indexofliving.com/cost/{{list.country_name}}/{{list.state_name}}" itemprop="item"> <span itemprop="name">{{list.state_name}}</span> </a>
+                    <meta itemprop="position" content="3">
+                    </li>
+                    {% endif %}
+                    
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"> <a
+                        href="https://indexofliving.com/cost/{{list.country_name}}{% if st != '-' %}/{{list.state_name}}{% endif %}/{{list.Name}}" itemprop="item"> <span itemprop="name">{{list.Name}}</span> </a>
+                    <meta itemprop="position" content="4">
+                    </li>
+                    {% endwith %}
+                </ol>
+            </nav>
+            <article id="content">
+                <header class="mb-4">
+                    {% with st=list.state_name %}
+                    <h1 class="text-center h3">Cost of Living in {{list.Name}}, {{list.country_name}}</h1>
+                    {% endwith %}
+                </header>
+
+                <div class="row mb-3">
+                    <div class="col-12 col-lg-8 mb-3">
+                        <div class="table-margin">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th id="col" class="w-50">Cost of living</th>
+                                        <th id="one-person" class="text-center w-25">One person</th>
+                                        <th id="family" class="text-center w-25">Family of 4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th id="total">
+                                            <span class="font-weight-normal">💰</span>
+                                            Total with rent
+                                        </th>
+                                        <td headers="col total one-person">
+                                            <div class="bar-table text-center">
+                                                <span>${{list.Total_with_rent_1p|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Total_with_rent_1p|div:max_vals.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{list.Total_with_rent_1p|div:max_vals.Total_with_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td headers="col total family">
+                                            <div class="bar-table text-center">
+                                                <span
+                                                    data-usd="4821.37">${{list.Total_with_rent_3p|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Total_with_rent_3p|div:max_vals.Total_with_rent_3p|mul:100|floatformat:0}}%;width:{{list.Total_with_rent_3p|div:max_vals.Total_with_rent_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th id="without-rent">
+                                            <span class="font-weight-normal">🛋️</span>
+                                            Without rent
+                                        </th>
+                                        <td headers="col without-rent one-person">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="771.53">${{list.Without_rent_1p|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Without_rent_1p|div:max_vals.Without_rent_1p|mul:100|floatformat:0}}%;width:{{list.Without_rent_1p|div:max_vals.Without_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td headers="col without-rent family">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2455.192">${{list.Without_rent_3p|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Without_rent_3p|div:max_vals.Without_rent_3p|mul:100|floatformat:0}}%;width:{{list.Without_rent_3p|div:max_vals.Without_rent_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th id="rent">
+                                            <span class="font-weight-normal">🏨</span>
+                                            Rent &Utilities
+                                        </th>
+                                        <td headers="col rent one-person">
+                                            <div class="bar-table text-center">
+                                                <span
+                                                    data-usd="1426.645">${{list.Rent_and_Utilities_1p|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Rent_and_Utilities_1p|div:max_vals.Rent_and_Utilities_1p|mul:100|floatformat:0}}%;width:{{list.Rent_and_Utilities_1p|div:max_vals.Rent_and_Utilities_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td headers="col rent family">
+                                            <div class="bar-table text-center">
+                                                <span
+                                                    data-usd="2366.179">${{list.Rent_and_Utilities_3p|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Rent_and_Utilities_3p|div:max_vals.Rent_and_Utilities_3p|mul:100|floatformat:0}}%;width:{{list.Rent_and_Utilities_3p|div:max_vals.Rent_and_Utilities_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th id="food">
+                                            <span class="font-weight-normal">🍽️</span>
+                                            Food
+                                        </th>
+                                        <td headers="col food one-person">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="507.819">${{list.Food_1p|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Food_1p|div:max_vals.Food_1p|mul:100|floatformat:0}}%;width:{{list.Food_1p|div:max_vals.Food_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td headers="col food family">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1316.202">${{list.Food_3p|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Food_3p|div:max_vals.Food_3p|mul:100|floatformat:0}}%;width:{{list.Food_3p|div:max_vals.Food_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th id="transport">
+                                            <span class="font-weight-normal">🚐</span>
+                                            Transport
+                                        </th>
+                                        <td headers="col transport one-person">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="128.147">${{list.Transport_1p|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Transport_1p|div:max_vals.Transport_1p|mul:100|floatformat:0}}%;width:{{list.Transport_1p|div:max_vals.Transport_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td headers="col transport family">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="333.539">${{list.Transport_3p|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Transport_3p|div:max_vals.Transport_3p|mul:100|floatformat:0}}%;width:{{list.Transport_3p|div:max_vals.Transport_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th id="salary">
+                                            <span class="font-weight-normal">💳</span>
+                                            Monthly salary after tax
+                                        </th>
+                                        <td headers="salary" colspan="2">
+                                            <div class="bar-table bar-best-container text-center text-nowrap">
+                                                <span
+                                                    data-usd="3009.64">${{list.Monthly_salary_after_tax|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Monthly_salary_after_tax|div:max_vals.Monthly_salary_after_tax|mul:100|floatformat:0}}%;width:{{list.Monthly_salary_after_tax|div:max_vals.Monthly_salary_after_tax|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th id="quality">
+                                            <span class="font-weight-normal">😀</span>
+                                            Quality of life
+                                        </th>
+                                        <td headers="quality" colspan="2">
+                                            <div class="bar-table bar-best-container text-center text-nowrap">
+                                                {{list.Quality_of_life}}
+                                                <span class="bar-color" style="left:99%;width:1%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <th id="population">
+                                            <span class="font-weight-normal">🏙️</span>
+                                            Population
+                                        </th>
+                                        <td headers="population" colspan="2">
+                                            <div class="bar-table text-center bar-green">
+                                                {{list.population_txt}}
+                                                <span class="bar-color"
+                                                    style="left:{{list.Population|div:max_vals.Population|mul:100|floatformat:0}}%;width:{{list.Population|div:max_vals.Population|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p id="cost">
+                            Living in {{list.Name}} costs around {{list.Total_with_rent_1p|floatformat:0}} American
+                            dollars, and it is{% if list.pram2 %} expensive{% endif %}{% if not list.pram2 %} cheaper 
+                            {% endif %} than the average cost in the {{list.country_name}} by about {{list.pram1}} times.
+                            In terms of living cost, {{list.Name}} comes in the {{list.pram3}} place out of
+                            {{list.pram6}} cities and is the {{list.pram4}}th best city in {{list.country_name}} to live
+                            in.
+                        </p>
+                        <p>
+                            After paying taxes, the average income in {{list.Name}} is about
+                            {{list.Monthly_salary_after_tax|floatformat:0}} American dollars. This money can take care
+                            of your living costs for just a bit more than {{list.pram5}} month.
+                        </p>
+                        <p>
+                            Discover <a href="/best/{{list.country_name}}/">best places to live in
+                                {{list.country_name}}</a>
+                            .
+                        </p>
+
+
+                        <div class="table-margin">
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row"><span class="font-weight-normal">✈️</span> Closest airport</th>
+                                        <td><span class="text-nowrap">{{list.Closest_airport}}</span></td>
+                                        <td>{{list.Closest_airport_val}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><span class="font-weight-normal">😷</span> Air quality</th>
+                                        <td>{{list.Air_quality}}</td>
+                                        <td>{{list.Air_quality_val}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"><span class="font-weight-normal">🎓</span> Best university rank
+                                        </th>
+                                        <td><span class="text-nowrap">{{list.Best_university_rank}}</span></td>
+                                        <td>{{list.Best_university_rank_val}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="my-4">
+                            <div id="lc-short"></div>
+                        </div>
+                        <div id="salaryCmpContainer" class="mb-3 block-bordered d-flex justify-content-center">
+                            <form id="homeSearch" class="js-search-container" method="post"
+                                action="{% url 'submit_form' %}">
+                                <div class="form-row">
+
+                                    {% csrf_token %}
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-12 col-sm-auto mr-sm-1 ml-auto mb-2 text-center">
+                                            <div class="position-relative d-inline-block">
+                                                <input type="text" list="citylist"
+                                                    class="form-control search-input mr-1"
+                                                    placeholder="city or country" name="sel1">
+                                                <datalist id="citylist">
+                                                    {% for res in list %}
+                                                    <option value="{{res.Name}}"></option>
+                                                    {% endfor %}
+                                                    {% for res in dict_list1 %}
+                                                    <option value="{{res.Name}}"></option>
+                                                    {% endfor %}
+                                                </datalist>
+                                                <div class="dropdown-menu search-dropdown" style="display:none"></div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-auto mr-sm-1 mb-2 text-center">
+                                            <div class="position-relative d-inline-block">
+                                                <input class="form-control search-input mr-1" list="citylist2"
+                                                    placeholder="city or country" aria-label="Compare with"
+                                                    name="sel2">
+                                                <datalist id="citylist2">
+                                                    {% for res in list %}
+                                                    <option value="{{res.Name}}"></option>
+                                                    {% endfor %}
+                                                    {% for res in dict_list1 %}
+                                                    <option value="{{res.Name}}"></option>
+                                                    {% endfor %}
+                                                </datalist>
+                                                <div class="dropdown-menu dropdown-menu-right search-dropdown"
+                                                    style="display:none"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <button type="submit" class="btn-orange btn-search">Compare</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="container111">
+                    <h1 style="position: relative;
+                    z-index: 1;
+                    margin-left: auto;
+                    margin-right: auto;
+                    text-align: center;
+                    color: white;">{{list.Name}}</h1>
+                    <table id="myTable111">
+                            <tr id="less">
+                                <td id="less">Cost of living</th>
+                                <td >One person</th>
+                                <td>Family of 4</th>
+                            </tr>
+                            <tr>
+                                <td id="total">
+                                    <span class="font-weight-normal">💰</span>
+                                    Total with rent
+                                </td>
+                                <td headers="col total one-person">
+                                    <div class="bar-table text-center">
+                                        <span>${{list.Total_with_rent_1p|floatformat:0}}</span>
+                                        <span class="bar-color"
+                                            style="left:{{list.Total_with_rent_1p|div:max_vals.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{list.Total_with_rent_1p|div:max_vals.Total_with_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                                <td headers="col total family">
+                                    <div class="bar-table text-center">
+                                        <span
+                                            data-usd="4821.37">${{list.Total_with_rent_3p|floatformat:0}}</span>
+                                        <span class="bar-color"
+                                            style="left:{{list.Total_with_rent_3p|div:max_vals.Total_with_rent_3p|mul:100|floatformat:0}}%;width:{{list.Total_with_rent_3p|div:max_vals.Total_with_rent_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="without-rent">
+                                    <span class="font-weight-normal">🛋️</span>
+                                    Without rent
+                                </td>
+                                <td headers="col without-rent one-person">
+                                    <div class="bar-table text-center">
+                                        <span data-usd="771.53">${{list.Without_rent_1p|floatformat:0}}</span>
+                                        <span class="bar-color"
+                                            style="left:{{list.Without_rent_1p|div:max_vals.Without_rent_1p|mul:100|floatformat:0}}%;width:{{list.Without_rent_1p|div:max_vals.Without_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                                <td headers="col without-rent family">
+                                    <div class="bar-table text-center">
+                                        <span data-usd="2455.192">${{list.Without_rent_3p|floatformat:0}}</span>
+                                        <span class="bar-color"
+                                            style="left:{{list.Without_rent_3p|div:max_vals.Without_rent_3p|mul:100|floatformat:0}}%;width:{{list.Without_rent_3p|div:max_vals.Without_rent_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="rent">
+                                    <span class="font-weight-normal">🏨</span>
+                                    Rent &Utilities
+                                </td>
+                                <td headers="col rent one-person">
+                                    <div class="bar-table text-center">
+                                        <span
+                                            data-usd="1426.645">${{list.Rent_and_Utilities_1p|floatformat:0}}</span>
+                                        <span class="bar-color"
+                                            style="left:{{list.Rent_and_Utilities_1p|div:max_vals.Rent_and_Utilities_1p|mul:100|floatformat:0}}%;width:{{list.Rent_and_Utilities_1p|div:max_vals.Rent_and_Utilities_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                                <td headers="col rent family">
+                                    <div class="bar-table text-center">
+                                        <span
+                                            data-usd="2366.179">${{list.Rent_and_Utilities_3p|floatformat:0}}</span>
+                                        <span class="bar-color"
+                                            style="left:{{list.Rent_and_Utilities_3p|div:max_vals.Rent_and_Utilities_3p|mul:100|floatformat:0}}%;width:{{list.Rent_and_Utilities_3p|div:max_vals.Rent_and_Utilities_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="food">
+                                    <span class="font-weight-normal">🍽️</span>
+                                    Food
+                                </td>
+                                <td headers="col food one-person">
+                                    <div class="bar-table text-center">
+                                        <span data-usd="507.819">${{list.Food_1p|floatformat:0}}</span>
+                                        <span class="bar-color"
+                                            style="left:{{list.Food_1p|div:max_vals.Food_1p|mul:100|floatformat:0}}%;width:{{list.Food_1p|div:max_vals.Food_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                                <td headers="col food family">
+                                    <div class="bar-table text-center">
+                                        <span data-usd="1316.202">${{list.Food_3p|floatformat:0}}</span>
+                                        <span class="bar-color"
+                                            style="left:{{list.Food_3p|div:max_vals.Food_3p|mul:100|floatformat:0}}%;width:{{list.Food_3p|div:max_vals.Food_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="transport">
+                                    <span class="font-weight-normal">🚐</span>
+                                    Transport
+                                </td>
+                                <td headers="col transport one-person">
+                                    <div class="bar-table text-center">
+                                        <span data-usd="128.147">${{list.Transport_1p|floatformat:0}}</span>
+                                        <span class="bar-color"
+                                            style="left:{{list.Transport_1p|div:max_vals.Transport_1p|mul:100|floatformat:0}}%;width:{{list.Transport_1p|div:max_vals.Transport_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                                <td headers="col transport family">
+                                    <div class="bar-table text-center">
+                                        <span data-usd="333.539">${{list.Transport_3p|floatformat:0}}</span>
+                                        <span class="bar-color"
+                                            style="left:{{list.Transport_3p|div:max_vals.Transport_3p|mul:100|floatformat:0}}%;width:{{list.Transport_3p|div:max_vals.Transport_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td id="salary">
+                                    <span class="font-weight-normal">💳</span>
+                                    Monthly salary after tax
+                                </td>
+                                <td headers="salary" colspan="2">
+                                    <div class="bar-table bar-best-container text-center text-nowrap">
+                                        <span
+                                            data-usd="3009.64">${{list.Monthly_salary_after_tax|floatformat:0}}</span>
+                                        <span class="bar-color"
+                                            style="left:{{list.Monthly_salary_after_tax|div:max_vals.Monthly_salary_after_tax|mul:100|floatformat:0}}%;width:{{list.Monthly_salary_after_tax|div:max_vals.Monthly_salary_after_tax|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td id="quality">
+                                    <span class="font-weight-normal">😀</span>
+                                    Quality of life
+                                </td>
+                                <td headers="quality" colspan="2">
+                                    <div class="bar-table bar-best-container text-center text-nowrap">
+                                        {{list.Quality_of_life}}
+                                        <span class="bar-color" style="left:99%;width:1%"></span>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+                            <tr>
+                                <td id="population">
+                                    <span class="font-weight-normal">🏙️</span>
+                                    Population
+                                </td>
+                                <td headers="population" colspan="2">
+                                    <div class="bar-table text-center bar-green">
+                                        {{list.population_txt}}
+                                        <span class="bar-color"
+                                            style="left:{{list.Population|div:max_vals.Population|mul:100|floatformat:0}}%;width:{{list.Population|div:max_vals.Population|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                    </table>
+                    <img class="background-image" src="/static/media/city/{{list.Name|lower}}.jpg" alt="Background image">
+                </div>
+                <h2 class="row mb-4"></h2>
+                <h2 class="row mb-4"></h2>
+                <h2 class="row mb-4"></h2>
+                <div class="row mb-3">
+                    <div class="col-12 col-lg-8 mb-3">
+                        <h2 class="text-center h4">Prices in {{list.Name}}</h2>
+                        <p>We calculate prices for {{list.Name}} as a population-weighted mean of some cities. Since
+                            large
+                            cities tend to have a higher cost of living, it's better to visit specific city pages below
+                            for more relevant information. </p>
+                        <div class="mb-2">
+                            <div class="lc-content"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-8 mb-3">
+                        <div class="table-margin">
+                            <table class="table table-sm table-striped table-hover">
+                                <caption>Eating Out </caption>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍱</span>
+                                            Lunch Menu
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="15.78">${{list.Lunch_Menu}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Lunch_Menu|div:max_vals.Lunch_Menu|mul:100|floatformat:0}}%;width:{{list.Lunch_Menu|div:max_vals.Lunch_Menu|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🥂</span>
+                                            Dinner in a Restaurant, <small class="text-nowrap">for 2</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="75.98">${{list.Dinner_in_a_Restaurant}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Dinner_in_a_Restaurant|div:max_vals.Dinner_in_a_Restaurant|mul:100|floatformat:0}}%;width:{{list.Dinner_in_a_Restaurant|div:max_vals.Dinner_in_a_Restaurant|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🥪</span>
+                                            Fast food meal, <small class="text-nowrap">equiv. McDonald &#39;s</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="9.96">${{list.Fast_food_meal}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Fast_food_meal|div:max_vals.Fast_food_meal|mul:100|floatformat:0}}%;width:{{list.Fast_food_meal|div:max_vals.Fast_food_meal|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍻</span>
+                                            Beer in a Pub, <small class="text-nowrap">0.5 L or 16 fl oz</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="6.32">${{list.Beer_in_a_Pub}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Beer_in_a_Pub|div:max_vals.Beer_in_a_Pub|mul:100|floatformat:0}}%;width:{{list.Beer_in_a_Pub|div:max_vals.Beer_in_a_Pub|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">☕</span>
+                                            Cappuccino
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="3.88">${{list.Cappuccino}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Cappuccino|div:max_vals.Cappuccino|mul:100|floatformat:0}}%;width:{{list.Cappuccino|div:max_vals.Cappuccino|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🥤</span>
+                                            Pepsi / Coke, <small class="text-nowrap">0.5 L or 16.9 fl oz</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2.18">${{list.Pepsi_Coke}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Cappuccino|div:max_vals.Cappuccino|mul:100|floatformat:0}}%;width:{{list.Cappuccino|div:max_vals.Cappuccino|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-sm table-striped table-hover">
+                                <caption>Rent &Utilities </caption>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🏙️</span>
+                                            1 bedroom apartment in city Center, <small class="text-nowrap">40 m2 or
+                                                430 ft2</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span
+                                                    data-usd="1474.29">${{list.bedroom_apartment_in_city_Center}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.bedroom_apartment_in_city_Center|div:max_vals.bedroom_apartment_in_city_Center|mul:100|floatformat:0}}%;width:{{list.bedroom_apartment_in_city_Center|div:max_vals.bedroom_apartment_in_city_Center|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🏡</span>
+                                            Cheap 1 bedroom apartment, <small class="text-nowrap">40 m2 or
+                                                430 ft2</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1182.43">${{list.Cheap_bedroom_apartment}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Cheap_bedroom_apartment|div:max_vals.Cheap_bedroom_apartment|mul:100|floatformat:0}}%;width:{{list.Cheap_bedroom_apartment|div:max_vals.Cheap_bedroom_apartment|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                   
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🔌</span>
+                                            Utility Bill one person, <small class="text-nowrap">electricity, heating,
+                                                water, etc.</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="132.3">${{list.Utility_Bill_one_person}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Utility_Bill_one_person|div:max_vals.Utility_Bill_one_person|mul:100|floatformat:0}}%;width:{{list.Utility_Bill_one_person|div:max_vals.Utility_Bill_one_person|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🔌</span>
+                                            Utility Bill for a Family, <small class="text-nowrap">electricity, heating,
+                                                water, etc.</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="204.83">${{list.Utility_Bill_for_a_Family}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Utility_Bill_for_a_Family|div:max_vals.Utility_Bill_for_a_Family|mul:100|floatformat:0}}%;width:{{list.Utility_Bill_for_a_Family|div:max_vals.Utility_Bill_for_a_Family|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🌐</span>
+                                            Internet plan, <small class="text-nowrap">50 Mbps+ 1 month unlimited</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="53.54">${{list.Internet_plan}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Internet_plan|div:max_vals.Internet_plan|mul:100|floatformat:0}}%;width:{{list.Internet_plan|div:max_vals.Internet_plan|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🏦</span>
+                                            Mortgage Interest Rate for 20 Years
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                {{list.Mortgage_Interest_Rate_for_Years}}%
+                                                <span class="bar-color"
+                                                    style="left:{{list.Mortgage_Interest_Rate_for_Years|div:max_vals.Mortgage_Interest_Rate_for_Years|mul:100|floatformat:0}}%;width:{{list.Mortgage_Interest_Rate_for_Years|div:max_vals.Mortgage_Interest_Rate_for_Years|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🏙️</span>
+                                            Apartment price to Buy in city Center, <small class="text-nowrap">1 m2 or
+                                                10 ft2</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span
+                                                    data-usd="5690.14">${{list.Apartment_price_to_Buy_in_city_Center}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Apartment_price_to_Buy_in_city_Center|div:max_vals.Apartment_price_to_Buy_in_city_Center|mul:100|floatformat:0}}%;width:{{list.Apartment_price_to_Buy_in_city_Center|div:max_vals.Apartment_price_to_Buy_in_city_Center|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🏡</span>
+                                            House price to Buy in Suburbs, <small class="text-nowrap">1 m2 or
+                                                10 ft2</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="3982.85">${{list.House_price_to_Buy_in_Suburbs}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.House_price_to_Buy_in_Suburbs|div:max_vals.House_price_to_Buy_in_Suburbs|mul:100|floatformat:0}}%;width:{{list.House_price_to_Buy_in_Suburbs|div:max_vals.House_price_to_Buy_in_Suburbs|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-sm table-striped table-hover">
+                                <caption>Transportation </caption>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🚌</span>
+                                            Local transport ticket
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2.41">${{list.Local_transport_ticket}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Local_transport_ticket|div:max_vals.Local_transport_ticket|mul:100|floatformat:0}}%;width:{{list.Local_transport_ticket|div:max_vals.Local_transport_ticket|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🎟️</span>
+                                            Monthly ticket local transport
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="103.55">${{list.Monthly_ticket_local_transport}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Monthly_ticket_local_transport|div:max_vals.Monthly_ticket_local_transport|mul:100|floatformat:0}}%;width:{{list.Monthly_ticket_local_transport|div:max_vals.Monthly_ticket_local_transport|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🚕</span>
+                                            Taxi Ride, <small class="text-nowrap">8 km or 5 mi</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="19.15">${{list.Taxi_Ride}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Taxi_Ride|div:max_vals.Taxi_Ride|mul:100|floatformat:0}}%;width:{{list.Taxi_Ride|div:max_vals.Taxi_Ride|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">⛽</span>
+                                            Gas / Petrol, <small class="text-nowrap">1 L or 0.26 gal</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2.07">${{list.Gas_Petrol}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Gas_Petrol|div:max_vals.Gas_Petrol|mul:100|floatformat:0}}%;width:{{list.Gas_Petrol|div:max_vals.Gas_Petrol|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-sm table-striped table-hover">
+                                <caption>Groceries </caption>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🥛</span>
+                                            Milk, <small class="text-nowrap">1 L or 1 qt</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1.4">${{list.Milk}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Milk|div:max_vals.Milk|mul:100|floatformat:0}}%;width:{{list.Milk|div:max_vals.Milk|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍞</span>
+                                            Bread, <small class="text-nowrap">0.5 kg or 1.1 lb</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1.71">${{list.Bread}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Bread|div:max_vals.Bread|mul:100|floatformat:0}}%;width:{{list.Bread|div:max_vals.Bread|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍚</span>
+                                            Rice, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1.52">${{list.Rice}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Rice|div:max_vals.Rice|mul:100|floatformat:0}}%;width:{{list.Rice|div:max_vals.Rice|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🥚</span>
+                                            Eggs, <small class="text-nowrap">x12</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="3.69">${{list.Eggs}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Eggs|div:max_vals.Eggs|mul:100|floatformat:0}}%;width:{{list.Eggs|div:max_vals.Eggs|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🧀</span>
+                                            Cheese, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="10.35">${{list.Cheese}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Cheese|div:max_vals.Cheese|mul:100|floatformat:0}}%;width:{{list.Cheese|div:max_vals.Cheese|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🐔</span>
+                                            Chicken Breast, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="10.08">$10.1</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Chicken_Breast|div:max_vals.Chicken_Breast|mul:100|floatformat:0}}%;width:{{list.Chicken_Breast|div:max_vals.Chicken_Breast|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🥩</span>
+                                            Round Steak, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="11.26">${{list.Round_Steak}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Round_Steak|div:max_vals.Round_Steak|mul:100|floatformat:0}}%;width:{{list.Round_Steak|div:max_vals.Round_Steak|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍏</span>
+                                            Apples, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2.51">${{list.Apples}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Apples|div:max_vals.Apples|mul:100|floatformat:0}}%;width:{{list.Apples|div:max_vals.Apples|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍌</span>
+                                            Banana, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1.92">${{list.Banana}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Banana|div:max_vals.Banana|mul:100|floatformat:0}}%;width:{{list.Banana|div:max_vals.Banana|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍊</span>
+                                            Oranges, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2.5">${{list.Oranges}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Oranges|div:max_vals.Oranges|mul:100|floatformat:0}}%;width:{{list.Oranges|div:max_vals.Oranges|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍅</span>
+                                            Tomato, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="3.12">${{list.Tomato}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Tomato|div:max_vals.Tomato|mul:100|floatformat:0}}%;width:{{list.Tomato|div:max_vals.Tomato|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🥔</span>
+                                            Potato, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1.67">${{list.Potato}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Potato|div:max_vals.Potato|mul:100|floatformat:0}}%;width:{{list.Potato|div:max_vals.Potato|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🧅</span>
+                                            Onion, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1.23">${{list.Onion}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Onion|div:max_vals.Onion|mul:100|floatformat:0}}%;width:{{list.Onion|div:max_vals.Onion|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🌊</span>
+                                            Water, <small class="text-nowrap">1 L or 1 qt</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1">${{list.Water}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Water|div:max_vals.Water|mul:100|floatformat:0}}%;width:{{list.Water|div:max_vals.Water|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍹</span>
+                                            Coca-Cola / Pepsi, <small class="text-nowrap">2 L or 67.6 fl oz</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2.76">${{list.Coca_Cola_Pepsi}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Coca_Cola_Pepsi|div:max_vals.Coca_Cola_Pepsi|mul:100|floatformat:0}}%;width:{{list.Coca_Cola_Pepsi|div:max_vals.Coca_Cola_Pepsi|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍾</span>
+                                            Wine (mid-priced), <small class="text-nowrap">750 mL bottle</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="13.2">${{list.Wine_mid_price}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Wine_mid_price|div:max_vals.Wine_mid_price|mul:100|floatformat:0}}%;width:{{list.Wine_mid_price|div:max_vals.Wine_mid_price|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍺</span>
+                                            Beer, <small class="text-nowrap">0.5 L or 16 fl oz</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2.96">${{Beer}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Beer|div:max_vals.Beer|mul:100|floatformat:0}}%;width:{{list.Beer|div:max_vals.Beer|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🚬</span>
+                                            Cigarette pack
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="16.49">${{list.Cigarette_pack}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Cigarette_pack|div:max_vals.Cigarette_pack|mul:100|floatformat:0}}%;width:{{list.Cigarette_pack|div:max_vals.Cigarette_pack|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">💊</span>
+                                            Cold medicince, <small class="text-nowrap">1 week</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="6.85">${{list.Cold_medicince}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Cold_medicince|div:max_vals.Cold_medicince|mul:100|floatformat:0}}%;width:{{list.Cold_medicince|div:max_vals.Cold_medicince|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🧴</span>
+                                            Hair Shampoo
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="5.92">${{list.Hair_Shampoo}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Hair_Shampoo|div:max_vals.Hair_Shampoo|mul:100|floatformat:0}}%;width:{{list.Hair_Shampoo|div:max_vals.Hair_Shampoo|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🧻</span>
+                                            Toilet paper, <small class="text-nowrap">4 rolls</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2.62">${{list.Toilet_paper}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Toilet_paper|div:max_vals.Toilet_paper|mul:100|floatformat:0}}%;width:{{list.Toilet_paper|div:max_vals.Toilet_paper|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">👄</span>
+                                            Toothpaste, <small class="text-nowrap">1 tube</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2.63">${{list.Toothpaste}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Toothpaste|div:max_vals.Toothpaste|mul:100|floatformat:0}}%;width:{{list.Toothpaste|div:max_vals.Toothpaste|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-sm table-striped table-hover">
+                                <caption>Other </caption>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🏋️</span>
+                                            Gym Membership, <small class="text-nowrap">1 month</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="45.59">${{list.Gym_Membership}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Gym_Membership|div:max_vals.Gym_Membership|mul:100|floatformat:0}}%;width:{{list.Gym_Membership|div:max_vals.Gym_Membership|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🎫</span>
+                                            Cinema Ticket, <small class="text-nowrap">1 person</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="12.59">${{list.Cinema_Ticket}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Cinema_Ticket|div:max_vals.Cinema_Ticket|mul:100|floatformat:0}}%;width:{{list.Cinema_Ticket|div:max_vals.Cinema_Ticket|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">👩‍⚕️</span>
+                                            Doctor &#39;s visit
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="63.82">${{list.Doctors_visit}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Doctors_visit|div:max_vals.Doctors_visit|mul:100|floatformat:0}}%;width:{{list.Doctors_visit|div:max_vals.Doctors_visit|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">💇</span>
+                                            Haircut, <small class="text-nowrap">simple</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="16.42">${{list.Haircut}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Haircut|div:max_vals.Haircut|mul:100|floatformat:0}}%;width:{{list.Haircut|div:max_vals.Haircut|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">👖</span>
+                                            Brand Jeans
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="85.5">${{list.Brand_Jeans}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Brand_Jeans|div:max_vals.Brand_Jeans|mul:100|floatformat:0}}%;width:{{list.Brand_Jeans|div:max_vals.Brand_Jeans|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">👟</span>
+                                            Brand Sneakers
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="90.95">${{list.Brand_Sneakers}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Brand_Sneakers|div:max_vals.Brand_Sneakers|mul:100|floatformat:0}}%;width:{{list.Brand_Sneakers|div:max_vals.Brand_Sneakers|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">👶</span>
+                                            Daycare or Preschool, <small class="text-nowrap">1 month</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1143.15">${{list.Daycare_or_Preschool}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.Daycare_or_Preschool|div:max_vals.Daycare_or_Preschool|mul:100|floatformat:0}}%;width:{{list.Daycare_or_Preschool|div:max_vals.Daycare_or_Preschool|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🏫</span>
+                                            International Primary School, <small class="text-nowrap">1 year</small>
+                                        </th>
+                                        <td class="w-25">
+                                            <div class="bar-table text-center">
+                                                <span data-usd="8852.53">${{list.International_Primary_School}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{list.International_Primary_School|div:max_vals.International_Primary_School|mul:100|floatformat:0}}%;width:{{list.International_Primary_School|div:max_vals.International_Primary_School|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <h2 class="text-center h4" id="cities">Cities</h2>
+                        <ol class="row geo-gutters mb-4 list-unstyled">
+                            {% for itm in city_dict_list %}
+                            <li class="col-6">
+                                <div class="geo-card">
+                                    <img class="geo-img-dimmer" src="/{{itm.country_flag_url}}" alt="img"
+                                        loading="lazy">
+                                        {% with st=itm.state_name %}
+                                    
+                                    <a href="/cost/{{ itm.country_name }}{% if st != '-' %}/{{ st }}{% endif %}/{{ itm.Name }}" class="geo-img-dimmer">
+                                        {% endwith %}
+                                    <!-- <a href="/cost/{{list.country_name}}/{{itm.Name}}" class="geo-img-dimmer"> -->
+                                        <div class="geo-overlay">
+                                            <h3 class="geo-head-text text-shadow-big">{{itm.Name}}</h3>
+                                            <div class="geo-row">
+                                                <span class="text-white text-shadow-big">Population</span>
+                                                <div class="bar-card bar-green text-center">
+                                                    {{itm.Population}}
+                                                    <span class="bar-color"
+                                                        style="left:{{itm.Population|div:max_vals.Population|mul:100|floatformat:0}}%;width:{{itm.Population|div:max_vals.Population|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                </div>
+                                            </div>
+                                            <div class="geo-row">
+                                                <span class="text-white text-shadow-big">Cost of living</span>
+                                                <div class="bar-card text-center">
+                                                    <span data-usd="2551.378">${{itm.Total_with_rent_1p}}</span>
+                                                    <span class="bar-color"
+                                                        style="left:{{itm.Total_with_rent_1p|div:max_vals.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{itm.Total_with_rent_1p|div:max_vals.Total_with_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                        <div class="mb-4">
+                            <div class="lc-content"></div>
+                        </div>
+
+                        {% if state_list %}
+                        <div class="table-margin">
+
+                            <table class="table table-sm table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="best-rank" scope="col">Rank</th>
+                                        <th class="cost-country" scope="col">State</th>
+                                        <th class="best-cost" scope="col">Cost of living</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in state_list %}
+                                    <tr>
+                                        <td class="best-rank"> {{i.Rank}} </td>
+                                        <th class="cost-country text-left" scope="row"> <a
+                                                href="/cost/{{i.country_name}}/{{i.Name}}"> {{i.Name}} </a> </th>
+                                        <td class="best-cost">
+                                            <div class="bar-table text-center"> <span data-usd="565.358">$565</span>
+                                                <span class="bar-color"
+                                                    style="left:{{i.Total_with_rent_1p|div:max_vals.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{i.Total_with_rent_1p|div:max_vals.Total_with_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </article>
+        </main>
+        <!-- <div class="container-card-a ">
+            <a href="/author/Emma-Davis">      
+
+                <div class="profile">
+                        <div class="image"></div>
+                        <h2>Emma Davis</h2>
+                        <p>Emma Davis is an experienced writer and lifestyle analyst focusing on the cost of living.</p>
+
+                </div>
+            </a>
+        </div> -->
+
+        <!-- </div> -->
+        <div class="card-bk-aa">
+            <a href="/author/Emma-Davis">
+                <div class="card-au-ci">
+                    <img src="/static/media/authors/Emma-Davis.png" alt="Image">
+                    <div class="info">
+                        <h3>Emma Davis</h3>
+                        <p>Emma Davis is an experienced writer and lifestyle analyst focusing on the cost of living.</p>
+                        <div class="social-icons">
+                        <div class="social-icons">
+                            <a href="#"><i style="margin-right: 20px;" class="s"></i></a> 
+                            <!-- <a href="#"><i style="margin-right: 20px;" class="fab fa-twitter"></i></a> 
+                            <a href="#"><i style="margin-right: 20px;" class="fab fa-instagram"></i></a> 
+                            <a href="#"><i class="fab fa-linkedin"></i></a> -->
+                        </div>
+                    </div>
+    
+                </div>
+            </a>
+    
+        </div>
+    </div>
+
+    </div> 
+    <footer>
+        <div class="footer-bg text-white-50">
+            <div class="container-xl p-4">
+                <div class="row">
+                    <div class="col-12 order-3 col-md-5 order-md-1">
+                        <div class="logo w-50 mb-3"> <a href="/"> <img src="/static/logo/logo_400_100.svg" class="d-block" alt="site logo"
+                                    width="300" height="72" loading="lazy"> </a> </div>
+                        <p> An inclusive database, created with the contribution of people, that includes a price comparison tool for cost of living in 9294 cities across 197 countries worldwide. The cost of living is calculated based on a consumer basket representing a moderate lifestyle in developed nations, which may appear relatively higher in certain least developed countries where sustaining such a standard of living is costly. </p>
+
+                    </div>
+                    <div class="col-6 order-1 mb-4 col-md-4 order-md-2 mb-md-2">
+                        <p class="text-bold text-white mb-4">Cost of Living</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"> <a href="/cost/United-States">United States</a>
+                            </li>
+                            <li class="mb-2"> <a href="/cost/Canada">Canada</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-Kingdom">United Kingdom</a>
+                            </li>
+                            <li class="mb-2"> <a href="/cost/Singapore">Singapore</a> </li>
+                            <li class="mb-2"> <a href="/cost/Australia">Australia</a> </li>
+                            <li class="mb-2"> <a href="/cost/New-Zealand">New Zealand</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-States/New-York-State">New York
+                                    City</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-States/Kentucky/london">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6 order-2 mb-4 col-md-3 order-md-3 mb-md-2">
+                        <p class="text-bold text-white mb-4">Best places in</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"> <a href="/best/United-States/">United States</a>
+                            </li>
+                            <li class="mb-2"> <a href="/best/Canada/">Canada</a> </li>
+                            <li class="mb-2"> <a href="/best/United-Kingdom/">United Kingdom</a>
+                            </li>
+                            <li class="mb-2"> <a href="/best/Australia/">Australia</a> </li>
+                            <li class="mb-2"> <a href="/best/India/">India</a> </li>
+                            <li class="mb-2"> <a href="/best/Germany/">Germany</a> </li>
+                            <li class="mb-2"> <a href="/best/Netherlands/">Netherlands</a> </li>
+                            <li class="mb-2"> <a href="/best/Sweden/">Sweden</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="subfooter-bg text-white-50">
+            <div class="container-xl">
+                <div class="row">
+                    <div class="col-12 col-sm-6 text-center text-sm-left">
+                        <p class="my-0">© 2023 IndexOfLiving</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

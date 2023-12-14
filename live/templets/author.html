@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+<head>
+  <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+    <link rel="icon" href="/static/logo/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{author.name}}</title>
+    <link rel="stylesheet" href="/static/stylesheets/author.css" media="screen">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/stylesheets/style.css">
+    <!-- <link rel="stylesheet" href="author.css" media="screen"> -->
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <style class="u-style">.u-section-2 .u-sheet-1 {
+  min-height: 676px;
+}
+.u-section-2 .u-layout-wrap-1 {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  margin-left: auto;
+}
+.u-section-2 .u-image-1 {
+  min-height: 576px;
+  background-image: url("/static/media/authors/{{author.Name}}.png");
+  /* background-image: url("images/pexels-photo-6533886.jpeg"); */
+}
+.u-section-2 .u-container-layout-1 {
+  padding: 30px;
+}
+.u-section-2 .u-layout-cell-2 {
+  min-height: 383px;
+}
+.u-section-2 .u-container-layout-2 {
+  padding: 30px 30px 30px 10px;
+}
+.u-section-2 .u-text-1 {
+  font-weight: 700;
+  font-size: 3rem;
+  margin: 0 0 0 auto;
+}
+.u-section-2 .u-text-2 {
+  line-height: 1.6;
+  margin: 20px 0 0 auto;
+}
+.u-section-2 .u-text-3 {
+  margin-left: auto;
+  font-weight: 700;
+  margin-right: 0;
+  margin-top: 20px;
+}
+.u-section-2 .u-layout-cell-3 {
+  min-height: 193px;
+}
+.u-section-2 .u-container-layout-3 {
+  padding: 10px;
+}
+.u-section-2 .u-layout-cell-4 {
+  min-height: 193px;
+}
+.u-section-2 .u-container-layout-4 {
+  padding: 10px;
+}
+.u-section-2 .u-text-4 {
+  line-height: 2;
+  margin: 0 0 0 auto;
+}
+@media (max-width: 1199px) {
+  .u-section-2 .u-sheet-1 {
+    min-height: 578px;
+  }
+  .u-section-2 .u-layout-wrap-1 {
+    margin-left: initial;
+  }
+  .u-section-2 .u-image-1 {
+    min-height: 475px;
+  }
+  .u-section-2 .u-layout-cell-2 {
+    min-height: 316px;
+  }
+  .u-section-2 .u-layout-cell-3 {
+    min-height: 152px;
+  }
+  .u-section-2 .u-layout-cell-4 {
+    min-height: 152px;
+  }
+}
+@media (max-width: 991px) {
+  .u-section-2 .u-sheet-1 {
+    min-height: 1155px;
+  }
+  .u-section-2 .u-image-1 {
+    min-height: 502px;
+  }
+  .u-section-2 .u-layout-cell-2 {
+    min-height: 100px;
+  }
+  .u-section-2 .u-layout-cell-3 {
+    min-height: 244px;
+  }
+  .u-section-2 .u-layout-cell-4 {
+    min-height: 100px;
+  }
+  .u-section-2 .u-text-4 {
+    margin-right: auto;
+    margin-left: 0;
+  }
+}
+@media (max-width: 767px) {
+  .u-section-2 .u-sheet-1 {
+    min-height: 1127px;
+  }
+  .u-section-2 .u-layout-wrap-1 {
+    margin-bottom: -177px;
+    margin-left: initial;
+  }
+  .u-section-2 .u-image-1 {
+    min-height: 487px;
+  }
+  .u-section-2 .u-container-layout-1 {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .u-section-2 .u-container-layout-2 {
+    padding-right: 10px;
+  }
+  .u-section-2 .u-layout-cell-3 {
+    min-height: 366px;
+  }
+}
+@media (max-width: 575px) {
+  .u-section-2 .u-sheet-1 {
+    min-height: 1128px;
+  }
+  .u-section-2 .u-layout-wrap-1 {
+    margin-bottom: -98px;
+    margin-left: initial;
+  }
+  .u-section-2 .u-image-1 {
+    min-height: 388px;
+  }
+  .u-section-2 .u-layout-cell-3 {
+    min-height: 230px;
+  }
+}</style>
+    
+</head>
+  <body class="u-body">
+    <div class="container-fluid">
+      <div class="home-header mb-5">
+          <header>
+              <h1 class="h3 text-center text-white">Compare cost of living in 9294 cities and 197
+                  countries</h1>
+              <form id="homeSearch" class="js-search-container" method="post" action="/author/submit-form/">
+                  <input type="hidden" name="csrfmiddlewaretoken" value="7bmyW65GUO8LtW2axkWQo7XDnqgx6ZccCrAtVVqmKpADwqwcvLXz9FE4vGaQdED0">
+                  <div class="row no-gutters align-items-center">
+                      <div class="col-12 col-sm-auto mr-sm-1 ml-auto mb-2 text-center">
+                          <div class="position-relative d-inline-block">
+                              <input type="text" list="citylist" class="form-control search-input mr-1" placeholder="city or country" name="sel1">
+                              <datalist id="citylist">
+                                  
+                                  <option value="China"></option>
+                                  
+                                  <option value="India"></option>
+                                  
+                                  <option value="United-States"></option>
+                                  
+                                  <option value="Indonesia"></option>
+                                  
+                                  
+                              </datalist>
+                              <div class="dropdown-menu search-dropdown" style="display:none"></div>
+
+                          </div>
+                      </div>
+                      <div class="col-12 col-sm-auto mr-sm-1 mb-2 text-center">
+                          <div class="position-relative d-inline-block">
+                              <input class="form-control search-input mr-1" list="citylist2" placeholder="city or country" aria-label="Compare with" name="sel2">
+                              <datalist id="citylist2">
+                                  
+                                  <option value="China"></option>
+                                  
+                                  <option value="India"></option>
+                                  
+                                  <option value="United-States"></option>
+                                  
+                                  <option value="Indonesia"></option>
+                       
+                              </datalist>
+                              <div class="dropdown-menu dropdown-menu-right search-dropdown" style="display:none"></div>
+                          </div>
+                      </div>
+                      <div class="col-12 col-sm-auto mr-auto mb-2 text-center">
+                          <button type="submit" class="btn-orange btn-search">Compare</button>
+                      </div>
+                  </div>
+              </form>
+
+
+          </header>
+      </div>
+  </div>
+    <section class="u-clearfix u-section-2" id="carousel_dcbf">
+      <div class="u-clearfix u-sheet u-valign-middle-lg u-valign-middle-md u-valign-middle-xl u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-20 u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-size-30 u-size-60-md">
+                <div class="u-layout-col">
+                  <div class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xl u-container-style u-image u-layout-cell u-left-cell u-size-60 u-image-1" data-image-width="1200" data-image-height="1500">
+                    <div class="u-container-layout u-valign-middle-md u-valign-middle-sm u-container-layout-1"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="u-size-30 u-size-60-md">
+                <div class="u-layout-col">
+                  <div class="u-size-40">
+                    <div class="u-layout-row">
+                      <div class="u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-2">
+                        <div class="u-container-layout u-container-layout-2">
+                          <h4 class="u-text u-text-1">{{author.name}}</h4>
+                          <p class="u-text u-text-2">{{author.bio}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="u-size-20">
+                    <div class="u-layout-row">
+                      <div class="u-container-style u-hidden-md u-hidden-sm u-hidden-xs u-layout-cell u-size-30 u-layout-cell-3">
+                        <div class="u-container-layout u-container-layout-3"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <section class="u-backlink u-clearfix u-grey-80">
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="https://indexofliving.com/" target="_blank">
+        <span>indexofliving.com</span>
+      </a>
+    </section>
+  
+</body>
+</html>

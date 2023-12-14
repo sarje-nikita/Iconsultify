@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+{% load mathfilters %}
+ 
+<head>
+
+    <!-- <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml"> -->
+    <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+    <link rel="icon" href="/static/logo/favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://indexofliving.com/best/{{list.0.country_name}}/{{name}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="This short description describes my website.">
+ 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Best cities to live in {{name}}</title>
+</head>
+
+<body>
+    <a class="sr-only sr-only-focusable" href="#content">Skip to content</a>
+    <nav class="header-main">
+        <div class="container-xl">
+            <div class="row align-items-center p-2">
+                <div class="col-4 order-1 col-md-2 order-md-1 mb-2 mb-md-0">
+                    <div class="table-margin">
+                        <div class="logo">
+                            <a href="/">
+                                    <img src="/static/logo/logo_400_100.svg" alt="site logo">
+                                    
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 order-3 col-md-5 order-md-2" >
+                    <div class="table-margin">
+                        <!-- <form id="navSearch" class="js-search-container" method="post" action="{% url 'submit_form' %}">
+                            {% csrf_token %}
+                            <div class="position-relative d-inline-block search-wrap-navbar">
+                                <input type="text" list="citylist" class="form-control search-input mr-1" id="inp_field"
+                                    placeholder="🔍 city or country" name="sel1">
+                                <datalist id="citylist">
+                                    {% for res in list %}
+                                    <option value="{{res.Name}}"></option>
+                                    {% endfor %}
+                                    {% for res in dict_list1 %}
+                                    <option value="{{res.Name}}"></option>
+                                    {% endfor %}
+                                </datalist>
+
+                                <div class="dropdown-menu search-dropdown" style="display:none"></div>
+                            </div>
+
+                            <button type="submit" class="btn-orange btn-search">Search </button>
+                        </form> -->
+
+                    </div>
+                </div>
+              
+                <div class="col-8 order-2 col-md-3 order-md-3 mb-2 mb-md-0 text-right">
+                    <div class="table-margin">
+                        <a class="mr-3" href="/">Cost of living</a>
+                        <a href="/best/">Best</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-xl main-content">
+        <main>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"> <a
+                        href="https://indexofliving.com/best/" itemprop="item"> <span itemprop="name">Best places to live</span> </a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"> <a
+                        href="https://indexofliving.com/best/{{list.0.country_name}}" itemprop="item"> <span itemprop="name">{{list.0.country_name}}</span> </a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"> <a
+                        href="https://indexofliving.com/best/{{list.0.country_name}}/{{name}}" itemprop="item"> <span itemprop="name">{{name}}</span> </a>
+                        <meta itemprop="position" content="2">
+                    </li>
+
+                </ol>
+            </nav>
+            <article id="content">
+
+
+                <div class="row mb-3">
+                    <div class="col-12 col-lg-6">
+                        <div class="mb-4">
+
+
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="mb-4">
+                            <div id="lc-video-1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <h2 class="text-center h4" id="cities">Best cities to live in {{name}}</h2>
+
+                        <div class="mb-4">
+                            <div class="lc-content"></div>
+                        </div>
+                        <ol class="row geo-gutters mb-4 ol-geo-best">
+                            {% for i in list %}
+                            <div class="col-6">
+                                <li>
+                                    <div class="geo-card">
+                                        <img class="geo-img-dimmer" src="/{{i.country_flag_url}}" alt="" loading="lazy">
+                                        {% with st=i.state_name %}
+                                        
+                                        <a href="/cost/{{ i.country_name }}{% if st != '-' %}/{{ st }}{% endif %}/{{ i.Name }}" class="geo-img-dimmer">
+                                            {% endwith %}
+                                        <!-- <a href="/cost/{{i.country_name}}/{{i.Name}}" class="geo-img-dimmer"> -->
+                                            <div class="geo-overlay">
+                                                <h3 class="geo-head-text --best text-shadow-big">
+                                                    {{i.Name}}<br>
+                                                    <small>{{i.country_name}}</small>
+                                                </h3>
+                                                <div class="geo-row --best">
+                                                    <span class="text-white text-shadow-big">Liveability</span>
+                                                    <div class="bar-card bar-best-container text-center">
+                                                        {{i.Liveability|floatformat:0}} <span class="bar-color"
+                                                            style="left:{{i.Liveability|div:max_vals1.Liveability|mul:100|floatformat:0}}%;width:{{i.Liveability|div:max_vals1.Liveability|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="geo-row --best">
+                                                    <span class="text-white text-shadow-big">Cost of living</span>
+                                                    <div class="bar-card text-center">
+                                                        <span
+                                                            data-usd="1778.119">${{i.Total_with_rent_1p|floatformat:0}}</span>
+                                                        <span class="bar-color"
+                                                            style="left:{{i.Total_with_rent_1p|div:max_vals1.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{i.Total_with_rent_1p|div:max_vals1.Total_with_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                            </div>
+                            {% endfor %}
+                        </ol>
+                        {% if list1 %}
+                        <div class="mb-4">
+                            <div class="lc-content">
+                                <div id="AdThrive_Content_2_desktop" style="min-height: 150px;">
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="text-center h4" id="countries">Other States to live in {{list.0.country_name}}</h2>
+                        <div class="table-margin">
+                            <table class="table text-center table-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="best-rank" scope="col">Rank</th>
+                                        <th class="best-country" scope="col">State</th>
+                                        <th class="best-score" scope="col"> Quality of life</th>
+                                        <th class="best-cost" scope="col">Cost of living</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in list1 %}
+                                    <tr>
+                                        <td class="best-rank"> {{i.num}} </td>
+                                   
+                                        <th class="best-country text-left" scope="row">
+                                            <a href="/best/{{ i.country_name }}/{{ i.Name }}" 
+                                            {% if name == i.Name %}
+                                             style="color: black;"
+                                            {% endif %}>
+                                            {{ i.Name }}</a>
+                                        </th>
+                                        <td class="best-score">
+                                            <div class="bar-table bar-best-container text-center text-nowrap">
+                                                {{i.Quality_of_life|floatformat:0}} <span class="bar-color"
+                                                    style="left:{{i.Quality_of_life|div:max_vals1.Quality_of_life|mul:100|floatformat:0}}%;width:{{i.Quality_of_life|div:max_vals1.Quality_of_life|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td class="best-cost">
+                                            <div class="bar-table text-center"> <span
+                                                    data-usd="442.291">${{i.Total_with_rent_1p|floatformat:0}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{i.Total_with_rent_1p|div:max_vals1.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{i.Total_with_rent_1p|div:max_vals1.Total_with_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </article>
+        </main>
+    </div>
+    <footer>
+        <div class="footer-bg text-white-50">
+            <div class="container-xl p-4">
+                <div class="row">
+                    <div class="col-12 order-3 col-md-5 order-md-1">
+                        <div class="logo w-50 mb-3"> <a href="/"> <img src="/static/logo/logo_400_100.svg" class="d-block" alt="site logo"
+                                    width="300" height="72" loading="lazy"> </a> </div>
+                        <p> An inclusive database, created with the contribution of people, that includes a price comparison tool for cost of living in 9294 cities across 197 countries worldwide. The cost of living is calculated based on a consumer basket representing a moderate lifestyle in developed nations, which may appear relatively higher in certain least developed countries where sustaining such a standard of living is costly. </p>
+
+                    </div>
+                    <div class="col-6 order-1 mb-4 col-md-4 order-md-2 mb-md-2">
+                        <p class="text-bold text-white mb-4">Cost of Living</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"> <a href="/cost/United-States">United States</a>
+                            </li>
+                            <li class="mb-2"> <a href="/cost/Canada">Canada</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-Kingdom">United Kingdom</a>
+                            </li>
+                            <li class="mb-2"> <a href="/cost/Singapore">Singapore</a> </li>
+                            <li class="mb-2"> <a href="/cost/Australia">Australia</a> </li>
+                            <li class="mb-2"> <a href="/cost/New-Zealand">New Zealand</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-States/New-York-State">New York
+                                    City</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-States/Kentucky/london">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6 order-2 mb-4 col-md-3 order-md-3 mb-md-2">
+                        <p class="text-bold text-white mb-4">Best places in</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"> <a href="/best/United-States/">United States</a>
+                            </li>
+                            <li class="mb-2"> <a href="/best/Canada/">Canada</a> </li>
+                            <li class="mb-2"> <a href="/best/United-Kingdom/">United Kingdom</a>
+                            </li>
+                            <li class="mb-2"> <a href="/best/Australia/">Australia</a> </li>
+                            <li class="mb-2"> <a href="/best/India/">India</a> </li>
+                            <li class="mb-2"> <a href="/best/Germany/">Germany</a> </li>
+                            <li class="mb-2"> <a href="/best/Netherlands/">Netherlands</a> </li>
+                            <li class="mb-2"> <a href="/best/Sweden/">Sweden</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="subfooter-bg text-white-50">
+            <div class="container-xl">
+                <div class="row">
+                    <div class="col-12 col-sm-6 text-center text-sm-left">
+                        <p class="my-0">© 2023 IndexOfLiving</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

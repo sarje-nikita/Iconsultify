@@ -1,0 +1,273 @@
+<!doctype html>
+{% load mathfilters %}
+<html lang="en">
+
+<head>
+    <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+    <link rel="icon" href="/static/logo/favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://indexofliving.com/">
+    <meta name="google-site-verification" content="--UuGTa7F3iuuK1jyeggSQ2kD9n6_qslFwFUN54T3D0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="living cost , cost of living , living expenses of , affordable living , high cost of living , living cost index of ,  cost of living comparison,  living cost calculator,  living cost analysis">
+    <meta name="description" content="Discover comprehensive insights into the cost of living worldwide on indexofliving.com. Explore detailed analyses, budgeting tips, and practical strategies to navigate living expenses. From housing to transportation and healthcare, our informative articles empower you to make informed decisions and enhance your quality of life within your budgetary constraints. Start optimizing your personal finances today with indexofliving.com.">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5653633021103136"
+     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Compare cost of living in 9294 cities and 197 countries</title>
+</head>
+
+<body>
+    <a class="sr-only sr-only-focusable" href="#content">Skip to content</a>
+    <nav class="header-main">
+        <div class="container-xl">
+            <div class="row align-items-center p-2">
+                <div class="col-4 order-1 col-md-2 order-md-1 mb-2 mb-md-0">
+                    <div class="table-margin">
+                        <div class="logo">
+                            <a href="/">
+                                    <img src="/static/logo/logo_400_100.svg" alt="site logo">
+                                    <!-- <img src="/assets/img/logo-earth-darker-with-shadow.svg" class="logo-earth d-none d-md-inline-block" alt="site logo">
+                                    <img src="/assets/img/logo-mobile.svg" class="d-block d-md-none" alt="site logo" width="300" height="72"> -->
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 order-3 col-md-5 order-md-2" >
+                    <div class="table-margin">
+                        <!-- <form id="navSearch" class="js-search-container" method="post" action="{% url 'submit_form' %}">
+                            {% csrf_token %}
+                            <div class="position-relative d-inline-block search-wrap-navbar">
+                                <input type="text" list="citylist" class="form-control search-input mr-1" id="inp_field"
+                                    placeholder="🔍 city or country" name="sel1">
+                                <datalist id="citylist">
+                                    {% for res in list %}
+                                    <option value="{{res.Name}}"></option>
+                                    {% endfor %}
+                                    {% for res in dict_list1 %}
+                                    <option value="{{res.Name}}"></option>
+                                    {% endfor %}
+                                </datalist>
+
+                                <div class="dropdown-menu search-dropdown" style="display:none"></div>
+                            </div>
+
+                            <button type="submit" class="btn-orange btn-search">Search </button>
+                        </form> -->
+
+                    </div>
+                </div>
+              
+                <div class="col-8 order-2 col-md-3 order-md-3 mb-2 mb-md-0 text-right">
+                    <div class="table-margin">
+                        <a class="mr-3" href="/">Cost of living</a>
+                        <a href="/best/">Best</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <main>
+            <article id="content">
+                <div class="container-fluid">
+                    <div class="home-header mb-5">
+                        <header>
+                            <h1 class="h3 text-center text-white">Compare cost of living in 9294 cities and 197
+                                countries</h1>
+                            <form id="homeSearch" class="js-search-container" method="post"
+                                action="{% url 'submit_form' %}">
+                                {% csrf_token %}
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-12 col-sm-auto mr-sm-1 ml-auto mb-2 text-center">
+                                        <div class="position-relative d-inline-block">
+                                            <input type="text" list="citylist" class="form-control search-input mr-1"
+                                                placeholder="city or country" name="sel1">
+                                            <datalist id="citylist">
+                                                {% for res in list %}
+                                                <option value="{{res.Name}}"></option>
+                                                {% endfor %}
+                                                {% for res in dict_list1 %}
+                                                <option value="{{res.Name}}"></option>
+                                                {% endfor %}
+                                            </datalist>
+                                            <div class="dropdown-menu search-dropdown" style="display:none"></div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-auto mr-sm-1 mb-2 text-center">
+                                        <div class="position-relative d-inline-block">
+                                            <input class="form-control search-input mr-1" list="citylist2"
+                                                placeholder="city or country" aria-label="Compare with" name="sel2">
+                                            <datalist id="citylist2">
+                                                {% for res in list %}
+                                                <option value="{{res.Name}}"></option>
+                                                {% endfor %}
+                                                {% for res in dict_list1 %}
+                                                <option value="{{res.Name}}"></option>
+                                                {% endfor %}
+                                            </datalist>
+                                            <div class="dropdown-menu dropdown-menu-right search-dropdown"
+                                                style="display:none"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-auto mr-auto mb-2 text-center">
+                                        <button type="submit" class="btn-orange btn-search">Compare</button>
+                                    </div>
+                                </div>
+                            </form>
+
+
+                        </header>
+                    </div>
+                </div>
+                <div class="container-xl">
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-6 mb-3">
+                            <h2 class="text-center h4" id="countries">By country</h2>
+                            <p class="text-center">Cost of living in 197 countries ranked by population</p>
+                            <div class="table-margin">
+                                <table class="table table-sm table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th class="best-rank" scope="col">Rank</th>
+                                            <th class="cost-country" scope="col">Country</th>
+                                            <th class="best-cost" scope="col">Cost of living</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for ele in list %}
+                                        <tr>
+                                            <td class="best-rank align-middle">{{ele.Rank}} </td>
+                                            <th class="cost-country text-left" scope="row">
+                                                <a href="/cost/{{ele.Name}}">
+                                                    <img src="{{ele.country_icon_url}}" class="flag" alt loading="lazy">
+                                                    <span class="align-middle">{{ele.Name}}</span>
+                                                </a>
+                                            </th>
+                                            <td class="best-cost">
+                                                <div class="bar-table text-center">
+                                                    <span data-usd="753.759">${{ele.Total_with_rent_1p}}</span>
+                                                    <span class="bar-color"
+                                                        style="left:{{ele.Total_with_rent_1p|div:max_vals.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{ele.Total_with_rent_1p|div:3760|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 mb-3">
+                            <h2 class="text-center h4" id="cities">By city</h2>
+                            <p class="text-center">Cost of living in 100 significant cities</p>
+                            <ol class="row geo-gutters mb-4 list-unstyled">
+                                {% for itm in dict_list1 %}
+                                <li class="col-6">
+                                    <div class="geo-card">
+                                        <img class="geo-img-dimmer" src="{{itm.country_flag_url}}" alt=""
+                                            loading="lazy">
+                                        {% with st=itm.state_name %}
+                                        
+                                        <a href="/cost/{{ itm.country_name }}{% if st != '-' %}/{{ st }}{% endif %}/{{ itm.Name }}" class="geo-img-dimmer">
+                                            {% endwith %}
+                                            <div class="geo-overlay">
+                                                <h3 class="geo-head-text text-shadow-big">
+                                                    {{itm.Name}}<br>
+                                                    <small>{{itm.country_name}}</small>
+                                                </h3>
+                                                <div class="geo-row">
+                                                    <span class="text-white text-shadow-big">Population</span>
+                                                    <div class="bar-card bar-green text-center">
+                                                        {{itm.Population}}
+                                                        <span class="bar-color"
+                                                            style="left:{{itm.Population|div:max_vals.max_Population|mul:100|floatformat:0}}%;width:{{itm.Population|div:max_vals.max_Population|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="geo-row">
+                                                    <span class="text-white text-shadow-big">Cost of living</span>
+                                                    <div class="bar-card text-center">
+                                                        <span data-usd="3722.702">${{itm.Total_with_rent_1p}}</span>
+                                                        <span class="bar-color"
+                                                            style="left:{{itm.Total_with_rent_1p|div:max_vals.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{itm.Total_with_rent_1p|div:max_vals.Total_with_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+
+                                {% endfor %}
+
+                            </ol>
+
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+    <footer>
+        <div class="footer-bg text-white-50">
+            <div class="container-xl p-4">
+                <div class="row">
+                    <div class="col-12 order-3 col-md-5 order-md-1">
+                        <div class="logo w-50 mb-3"> <a href="/"> <img src="/static/logo/logo_400_100.svg" class="d-block" alt="site logo"
+                                    width="300" height="72" loading="lazy"> </a> </div>
+                        <p> An inclusive database, created with the contribution of people, that includes a price comparison tool for cost of living in 9294 cities across 197 countries worldwide. The cost of living is calculated based on a consumer basket representing a moderate lifestyle in developed nations, which may appear relatively higher in certain least developed countries where sustaining such a standard of living is costly. </p>
+
+                    </div>
+                    <div class="col-6 order-1 mb-4 col-md-4 order-md-2 mb-md-2">
+                        <p class="text-bold text-white mb-4">Cost of Living</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"> <a href="/cost/United-States">United States</a>
+                            </li>
+                            <li class="mb-2"> <a href="/cost/Canada">Canada</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-Kingdom">United Kingdom</a>
+                            </li>
+                            <li class="mb-2"> <a href="/cost/Singapore">Singapore</a> </li>
+                            <li class="mb-2"> <a href="/cost/Australia">Australia</a> </li>
+                            <li class="mb-2"> <a href="/cost/New-Zealand">New Zealand</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-States/New-York-State">New York
+                                    City</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-States/Kentucky/london">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6 order-2 mb-4 col-md-3 order-md-3 mb-md-2">
+                        <p class="text-bold text-white mb-4">Best places in</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"> <a href="/best/United-States/">United States</a>
+                            </li>
+                            <li class="mb-2"> <a href="/best/Canada/">Canada</a> </li>
+                            <li class="mb-2"> <a href="/best/United-Kingdom/">United Kingdom</a>
+                            </li>
+                            <li class="mb-2"> <a href="/best/Australia/">Australia</a> </li>
+                            <li class="mb-2"> <a href="/best/India/">India</a> </li>
+                            <li class="mb-2"> <a href="/best/Germany/">Germany</a> </li>
+                            <li class="mb-2"> <a href="/best/Netherlands/">Netherlands</a> </li>
+                            <li class="mb-2"> <a href="/best/Sweden/">Sweden</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="subfooter-bg text-white-50">
+            <div class="container-xl">
+                <div class="row">
+                    <div class="col-12 col-sm-6 text-center text-sm-left">
+                        <p class="my-0">© 2023 IndexOfLiving</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

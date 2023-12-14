@@ -1,0 +1,1458 @@
+<!doctype html>
+<html lang="en">
+{% load mathfilters %}
+
+<head>
+    <script src="//instant.page/5.2.0" type="module" integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
+    <link rel="icon" href="/static/logo/favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://indexofliving.com/cost/{{l1.Name}}/{{l2.Name}}/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>{{l1.Name}} vs {{l2.Name}} comparison: Cost of Living, Prices, Salary</title>
+</head>
+
+<body>
+    <a class="sr-only sr-only-focusable" href="#content">Skip to content</a>
+    <nav class="header-main">
+        <div class="container-xl">
+            <div class="row align-items-center p-2">
+                <div class="col-4 order-1 col-md-2 order-md-1 mb-2 mb-md-0">
+                    <div class="table-margin">
+                        <div class="logo">
+                            <a href="/">
+                                <img src="/static/logo/logo_400_100.svg" alt="site logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 order-3 col-md-5 order-md-2">
+                    <div class="table-margin">
+                        <!-- <form id="navSearch" class="js-search-container" method="post" action="{% url 'submit_form' %}">
+                            {% csrf_token %}
+                            <div class="position-relative d-inline-block search-wrap-navbar">
+                                <input type="text" list="citylist" class="form-control search-input mr-1" id="inp_field"
+                                    placeholder="🔍 city or country" name="sel1">
+                                <datalist id="citylist">
+                                    {% for res in list %}
+                                    <option value="{{res.Name}}"></option>
+                                    {% endfor %}
+                                    {% for res in dict_list1 %}
+                                    <option value="{{res.Name}}"></option>
+                                    {% endfor %}
+                                </datalist>
+
+                                <div class="dropdown-menu search-dropdown" style="display:none"></div>
+                            </div>
+
+                            <button type="submit" class="btn-orange btn-search">Search </button>
+                        </form> -->
+                    </div>
+                </div>
+           
+                <div class="col-8 order-2 col-md-3 order-md-3 mb-2 mb-md-0 text-right">
+                    <div class="table-margin">
+                        <a class="mr-3" href="/">Cost of living</a>
+                        <a href="/best/">Best</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-xl main-content">
+        <main>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center" itemscope="" itemtype="https://schema.org/BreadcrumbList">
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"> <a
+                        href="https://indexofliving.com/" itemprop="item"> <span itemprop="name">Cost of living</span> </a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li class="breadcrumb-item" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem"> <a
+                        href="https://indexofliving.com/cost/{{l1.Name}}/{{l2.Name}}" itemprop="item"> <span itemprop="name">{{l1.Name}} vs {{l2.Name}}</span> </a>
+                        <meta itemprop="position" content="2">
+                    </li>                   
+                </ol>
+            </nav>
+            <article id="content">
+                <header class="mb-4">
+                    <h1 class="text-center h3 mb-3">{{l1.Name}} vs {{l2.Name}} - Cost of Living Comparison</h1>
+                </header>
+
+                <div class="row mb-3">
+                    <div class="col-12 mb-3">
+                        <div class="table-margin">
+                            <table class="table table-sm table-responsive-sm">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center text-cut w-25" scope="col">Cost of living</th>
+                                        <th class="text-center text-cut w-25" scope="col">{{l1.Name}}</th>
+                                        <th class="text-center text-cut w-25" scope="col">{{l2.Name}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🚶</span>
+                                            Cost of living one person
+                                        </th>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="420.451">${{l1.Total_with_rent_1p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l1.Total_with_rent_1p|div:ml.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{l1.Total_with_rent_1p|div:ml.Total_with_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2198.175">${{l2.Total_with_rent_1p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l2.Total_with_rent_1p|div:ml.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{l2.Total_with_rent_1p|div:ml.Total_with_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">👨‍👩‍👧‍👦</span>
+                                            Cost of living Family
+                                        </th>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1017.356">${{l1.Total_with_rent_3p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l1.Total_with_rent_3p|div:ml.Total_with_rent_3p|mul:100|floatformat:0}}%;width:{{l1.Total_with_rent_3p|div:ml.Total_with_rent_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="4821.37">${{l2.Total_with_rent_3p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l2.Total_with_rent_3p|div:ml.Total_with_rent_3p|mul:100|floatformat:0}}%;width:{{l2.Total_with_rent_3p|div:ml.Total_with_rent_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🏠</span>
+                                            One person rent
+                                        </th>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="174.462">${{l1.Rent_and_Utilities_1p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l1.Rent_and_Utilities_1p|div:ml.Rent_and_Utilities_1p|mul:100|floatformat:0}}%;width:{{l2.Rent_and_Utilities_1p|div:ml.Rent_and_Utilities_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="1426.645">${{l2.Rent_and_Utilities_1p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l2.Rent_and_Utilities_1p|div:ml.Rent_and_Utilities_1p|mul:100|floatformat:0}}%;width:{{l2.Rent_and_Utilities_1p|div:ml.Rent_and_Utilities_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🏘️</span>
+                                            Family rent
+                                        </th>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="322.905">${{l1.Rent_and_Utilities_3p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l1.Rent_and_Utilities_3p|div:ml.Rent_and_Utilities_3p|mul:100|floatformat:0}}%;width:{{l1.Rent_and_Utilities_3p|div:ml.Rent_and_Utilities_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="2366.179">${{l2.Rent_and_Utilities_3p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l2.Rent_and_Utilities_3p|div:ml.Rent_and_Utilities_3p|mul:100|floatformat:0}}%;width:{{l2.Rent_and_Utilities_3p|div:ml.Rent_and_Utilities_3p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🍽️</span>
+                                            Food expenses
+                                        </th>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="159.996">${{l1.Food_1p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l1.Food_1p|div:ml.Food_1p|mul:100|floatformat:0}}%;width:{{l1.Food_1p|div:ml.Food_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="507.819">${{l2.Food_1p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l2.Food_1p|div:ml.Food_1p|mul:100|floatformat:0}}%;width:{{l2.Food_1p|div:ml.Food_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🚐</span>
+                                            Transport expenses
+                                        </th>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="45.306">${{l1.Transport_1p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l1.Transport_1p|div:ml.Transport_1p|mul:100|floatformat:0}}%;width:{{l1.Transport_1p|div:ml.Transport_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="bar-table text-center">
+                                                <span data-usd="128.147">${{l2.Transport_1p}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l2.Transport_1p|div:ml.Transport_1p|mul:100|floatformat:0}}%;width:{{l2.Transport_1p|div:ml.Transport_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">💳</span>
+                                            Monthly salary after tax
+                                        </th>
+                                        <td>
+                                            <div class="bar-table bar-best-container text-center text-nowrap">
+                                                <span data-usd="531.58">${{l1.Monthly_salary_after_tax}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l1.Monthly_salary_after_tax|div:ml.Monthly_salary_after_tax|mul:100|floatformat:0}}%;width:{{l1.Monthly_salary_after_tax|div:ml.Monthly_salary_after_tax|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="bar-table bar-best-container text-center text-nowrap">
+                                                <span data-usd="3009.64">${{l2.Monthly_salary_after_tax}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{l2.Monthly_salary_after_tax|div:ml.Monthly_salary_after_tax|mul:100|floatformat:0}}%;width:{{l2.Monthly_salary_after_tax|div:ml.Monthly_salary_after_tax|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th scope="row">
+                                            <span class="font-weight-normal">🏙️</span>
+                                            Population
+                                        </th>
+                                        <td>
+                                            <div class="bar-table text-center bar-green">
+                                                {{l1.population_txt}}
+                                                <span class="bar-color"
+                                                    style="left:{{l1.Population|div:ml.Population|mul:100|floatformat:0}}%;width:{{l1.Population|div:ml.Population|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="bar-table text-center bar-green">
+                                                {{l2.population_txt}}
+                                                <span class="bar-color"
+                                                    style="left:{{l2.Population|div:ml.Population|mul:100|floatformat:0}}%;width:{{l2.Population|div:ml.Population|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p id="cost">
+                            {% if l1.Rank != '' %}
+                                The average cost of living in <a href="/cost/{{l1.Name}}">{{l1.Name}}</a>
+                            {% elif l1.State_rank != '' %}
+                                The average cost of living in <a href="/cost/{{l1.country_name}}/{{l1.Name}}">{{l1.Name}}</a>
+                            {% elif l1.state_name != '' %}
+                                The average cost of living in <a href="/cost/{{ l1.country_name }}{% if l1.state_name != '-' %}/{{ l1.state_name }}{% endif %}/{{ l1.Name }}">{{l1.Name}}</a>
+                            {% endif %}
+                        
+                            (<span data-usd="420.451">${{l1.Total_with_rent_1p}}</span>)
+                        
+                            {% if l2.Rank != '' %}
+                                The average cost of living in <a href="/cost/{{l2.Name}}">{{l2.Name}}</a>
+                            {% elif l2.State_rank != '' %}
+                                The average cost of living in <a href="/cost/{{l2.country_name}}/{{l2.Name}}">{{l2.Name}}</a>
+                            {% elif l2.state_name != '' %}
+                                The average cost of living in <a href="/cost/{{ l2.country_name }}{% if l2.state_name != '-' %}/{{ l2.state_name }}{% endif %}/{{ l2.Name }}">{{l2.Name}}</a>
+                            {% endif %}
+                        
+                            (<span data-usd="2198.175">${{l2.Total_with_rent_1p}}</span>)
+                        </p>
+                        <p>
+                            The average after-tax salary is enough to cover living expenses for {{l1.Monthly_salary_after_tax|div:l1.Total_with_rent_1p|floatformat:2}} months in {{l1.Name}}
+                            compared to {{l2.Monthly_salary_after_tax|div:l2.Total_with_rent_1p|floatformat:2}} months in {{l2.Name}}.
+                        </p>
+
+                        <div id="salaryCmpContainer" class="mb-3 block-bordered d-flex justify-content-center">
+                            <form id="homeSearch" class="js-search-container" method="post"
+                                action="{% url 'submit_form' %}">
+                                <div class="form-row">
+
+                                    {% csrf_token %}
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col-12 col-sm-auto mr-sm-1 ml-auto mb-2 text-center">
+                                            <div class="position-relative d-inline-block">
+                                                <input type="text" list="citylist"
+                                                    class="form-control search-input mr-1"
+                                                    placeholder="city or country" name="sel1">
+                                                <datalist id="citylist">
+                                                    {% for res in list %}
+                                                    <option value="{{res.Name}}"></option>
+                                                    {% endfor %}
+                                                    {% for res in dict_list1 %}
+                                                    <option value="{{res.Name}}"></option>
+                                                    {% endfor %}
+                                                </datalist>
+                                                <div class="dropdown-menu search-dropdown" style="display:none"></div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-sm-auto mr-sm-1 mb-2 text-center">
+                                            <div class="position-relative d-inline-block">
+                                                <input class="form-control search-input mr-1" list="citylist2"
+                                                    placeholder="city or country" aria-label="Compare with"
+                                                    name="sel2">
+                                                <datalist id="citylist2">
+                                                    {% for res in list %}
+                                                    <option value="{{res.Name}}"></option>
+                                                    {% endfor %}
+                                                    {% for res in dict_list1 %}
+                                                    <option value="{{res.Name}}"></option>
+                                                    {% endfor %}
+                                                </datalist>
+                                                <div class="dropdown-menu dropdown-menu-right search-dropdown"
+                                                    style="display:none"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 text-center">
+                                            <button type="submit" class="btn-orange btn-search">Compare</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12 mb-3">
+                                <div class="table-margin">
+                                    <div class="table-responsive-sm">
+                                        <table class="table table-sm table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="th-sticky"></th>
+                                                    <th class="th-sticky w-25 text-center" scope="col">{{l1.Name}} </th>
+                                                    <th class="th-sticky w-25 text-center" scope="col">{{l2.Name}} </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="3" class="text-center" scope="col">Eating Out</th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🍱</span>
+                                                        Lunch Menu
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="2.77">${{l1.Lunch_Menu}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Lunch_Menu|div:ml.Lunch_Menu|mul:100|floatformat:0}}%;width:{{l1.Lunch_Menu|div:ml.Lunch_Menu|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="15.78">${{l2.Lunch_Menu}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Lunch_Menu|div:ml.Lunch_Menu|mul:100|floatformat:0}}%;width:{{l2.Lunch_Menu|div:ml.Lunch_Menu|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🥂</span>
+                                                        Dinner in a Restaurant, <small class="text-nowrap">for 2</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="13.67">${{l1.Dinner_in_a_Restaurant}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Dinner_in_a_Restaurant|div:ml.Dinner_in_a_Restaurant|mul:100|floatformat:0}}%;width:{{l1.Dinner_in_a_Restaurant|div:ml.Dinner_in_a_Restaurant|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="75.98">${{l2.Dinner_in_a_Restaurant}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Dinner_in_a_Restaurant|div:ml.Dinner_in_a_Restaurant|mul:100|floatformat:0}}%;width:{{l2.Dinner_in_a_Restaurant|div:ml.Dinner_in_a_Restaurant|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🥪</span>
+                                                        Fast food meal, <small class="text-nowrap">equiv. McDonald
+                                                            &#39;s</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="3.9">${{l1.Fast_food_meal}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Fast_food_meal|div:ml.Fast_food_meal|mul:100|floatformat:0}}%;width:{{l1.Fast_food_meal|div:ml.Fast_food_meal|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="9.96">${{l2.Fast_food_meal}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Fast_food_meal|div:ml.Fast_food_meal|mul:100|floatformat:0}}%;width:{{l2.Fast_food_meal|div:ml.Fast_food_meal|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🍻</span>
+                                                        Beer in a Pub, <small class="text-nowrap">0.5 L or
+                                                            16 fl oz</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="2.13">${{l1.Beer_in_a_Pub}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Beer_in_a_Pub|div:ml.Beer_in_a_Pub|mul:100|floatformat:0}}%;width:{{l1.Beer_in_a_Pub|div:ml.Beer_in_a_Pub|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="6.32">${{l2.Beer_in_a_Pub}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Beer_in_a_Pub|div:ml.Beer_in_a_Pub|mul:100|floatformat:0}}%;width:{{l2.Beer_in_a_Pub|div:ml.Beer_in_a_Pub|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">☕</span>
+                                                        Cappuccino
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1.75">${{l1.Cappuccino}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Cappuccino|div:ml.Cappuccino|mul:100|floatformat:0}}%;width:{{l1.Cappuccino|div:ml.Cappuccino|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="3.88">${{l2.Cappuccino}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Cappuccino|div:ml.Cappuccino|mul:100|floatformat:0}}%;width:{{l2.Cappuccino|div:ml.Cappuccino|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🥤</span>
+                                                        Pepsi / Coke, <small class="text-nowrap">0.5 L or
+                                                            16.9 fl oz</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="0.43">${{l1.Pepsi_Coke}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Pepsi_Coke|div:ml.Pepsi_Coke|mul:100|floatformat:0}}%;width:{{l1.Pepsi_Coke|div:ml.Pepsi_Coke|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="2.18">${{l2.Pepsi_Coke}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Pepsi_Coke|div:ml.Pepsi_Coke|mul:100|floatformat:0}}%;width:{{l2.Pepsi_Coke|div:ml.Pepsi_Coke|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="3" class="text-center" scope="col">Rent &Utilities</th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🏙️</span>
+                                                        3 bedroom apartment in Downtown, <small
+                                                            class="text-nowrap">80 m2 or 860 ft2</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="189.21">${{l1.bedroom_apartment_in_city_Center}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.bedroom_apartment_in_city_Center|div:ml.bedroom_apartment_in_city_Center|mul:100|floatformat:0}}%;width:{{l1.bedroom_apartment_in_city_Center|div:ml.bedroom_apartment_in_city_Center|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="1474.29">${{l2.bedroom_apartment_in_city_Center}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.bedroom_apartment_in_city_Center|div:ml.bedroom_apartment_in_city_Center|mul:100|floatformat:0}}%;width:{{l2.bedroom_apartment_in_city_Center|div:ml.bedroom_apartment_in_city_Center|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🏡</span>
+                                                        Cheap 3 bedroom apartment, <small class="text-nowrap">80 m2 or
+                                                            860 ft2</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="126.49">${{l1.Cheap_bedroom_apartment}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Cheap_bedroom_apartment|div:ml.Cheap_bedroom_apartment|mul:100|floatformat:0}}%;width:{{l1.Cheap_bedroom_apartment|div:ml.Cheap_bedroom_apartment|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="1182.43">${{l2.Cheap_bedroom_apartment}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Cheap_bedroom_apartment|div:ml.Cheap_bedroom_apartment|mul:100|floatformat:0}}%;width:{{l2.Cheap_bedroom_apartment|div:ml.Cheap_bedroom_apartment|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                               
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🔌</span>
+                                                        Utility Bill one person, <small class="text-nowrap">electricity,
+                                                            heating, water, etc.</small>
+                                                    </th>
+
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="126.49">${{l1.Utility_Bill_one_person}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Utility_Bill_one_person|div:ml.Utility_Bill_one_person|mul:100|floatformat:0}}%;width:{{l1.Utility_Bill_one_person|div:ml.Utility_Bill_one_person|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="1182.43">${{l2.Utility_Bill_one_person}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Utility_Bill_one_person|div:ml.Utility_Bill_one_person|mul:100|floatformat:0}}%;width:{{l2.Utility_Bill_one_person|div:ml.Utility_Bill_one_person|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🔌</span>
+                                                        Utility Bill for a Family, <small
+                                                            class="text-nowrap">electricity, heating, water,
+                                                            etc.</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="126.49">${{l1.Utility_Bill_for_a_Family}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Utility_Bill_for_a_Family|div:ml.Utility_Bill_for_a_Family|mul:100|floatformat:0}}%;width:{{l1.Utility_Bill_for_a_Family|div:ml.Utility_Bill_for_a_Family|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="1182.43">${{l2.Utility_Bill_for_a_Family}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Utility_Bill_for_a_Family|div:ml.Utility_Bill_for_a_Family|mul:100|floatformat:0}}%;width:{{l2.Utility_Bill_for_a_Family|div:ml.Utility_Bill_for_a_Family|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🌐</span>
+                                                        Internet plan, <small class="text-nowrap">50 Mbps+ 1 month
+                                                            unlimited</small>
+                                                    </th>
+
+
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Internet_plan}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Internet_plan|div:ml.Internet_plan|mul:100|floatformat:0}}%;width:{{l1.Internet_plan|div:ml.Internet_plan|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Internet_plan}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Internet_plan|div:ml.Internet_plan|mul:100|floatformat:0}}%;width:{{l2.Internet_plan|div:ml.Internet_plan|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🏦</span>
+                                                        Mortgage Interest Rate for 20 Years
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="126.49">${{l1.Mortgage_Interest_Rate_for_Years}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Mortgage_Interest_Rate_for_Years|div:ml.Mortgage_Interest_Rate_for_Years|mul:100|floatformat:0}}%;width:{{l1.Mortgage_Interest_Rate_for_Years|div:ml.Mortgage_Interest_Rate_for_Years|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="1182.43">${{l2.Mortgage_Interest_Rate_for_Years}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Mortgage_Interest_Rate_for_Years|div:ml.Mortgage_Interest_Rate_for_Years|mul:100|floatformat:0}}%;width:{{l2.Mortgage_Interest_Rate_for_Years|div:ml.Mortgage_Interest_Rate_for_Years|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🏙️</span>
+                                                        Apartment price to Buy in city Center, <small
+                                                            class="text-nowrap">1 m2 or 10 ft2</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="126.49">${{l1.Apartment_price_to_Buy_in_city_Center}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Apartment_price_to_Buy_in_city_Center|div:ml.Apartment_price_to_Buy_in_city_Center|mul:100|floatformat:0}}%;width:{{l1.Apartment_price_to_Buy_in_city_Center|div:ml.Apartment_price_to_Buy_in_city_Center|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="1182.43">${{l2.Apartment_price_to_Buy_in_city_Center}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Apartment_price_to_Buy_in_city_Center|div:ml.Apartment_price_to_Buy_in_city_Center|mul:100|floatformat:0}}%;width:{{l2.Apartment_price_to_Buy_in_city_Center|div:ml.Apartment_price_to_Buy_in_city_Center|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🏡</span>
+                                                        House price to Buy in Suburbs, <small class="text-nowrap">1 m2
+                                                            or 10 ft2</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="126.49">${{l1.House_price_to_Buy_in_Suburbs}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.House_price_to_Buy_in_Suburbs|div:ml.House_price_to_Buy_in_Suburbs|mul:100|floatformat:0}}%;width:{{l1.House_price_to_Buy_in_Suburbs|div:ml.House_price_to_Buy_in_Suburbs|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="1182.43">${{l2.House_price_to_Buy_in_Suburbs}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.House_price_to_Buy_in_Suburbs|div:ml.House_price_to_Buy_in_Suburbs|mul:100|floatformat:0}}%;width:{{l2.House_price_to_Buy_in_Suburbs|div:ml.House_price_to_Buy_in_Suburbs|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="3" class="text-center" scope="col">Transportation</th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🚌</span>
+                                                        Local transport ticket
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="126.49">${{l1.Local_transport_ticket}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Local_transport_ticket|div:ml.Local_transport_ticket|mul:100|floatformat:0}}%;width:{{l1.Local_transport_ticket|div:ml.Local_transport_ticket|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="1182.43">${{l2.Local_transport_ticket}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Local_transport_ticket|div:ml.Local_transport_ticket|mul:100|floatformat:0}}%;width:{{l2.Local_transport_ticket|div:ml.Local_transport_ticket|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🎟️</span>
+                                                        Monthly ticket local transport
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="126.49">${{l1.Monthly_ticket_local_transport}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Monthly_ticket_local_transport|div:ml.Monthly_ticket_local_transport|mul:100|floatformat:0}}%;width:{{l1.Monthly_ticket_local_transport|div:ml.Monthly_ticket_local_transport|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="1182.43">${{l2.Monthly_ticket_local_transport}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Monthly_ticket_local_transport|div:ml.Monthly_ticket_local_transport|mul:100|floatformat:0}}%;width:{{l2.Monthly_ticket_local_transport|div:ml.Monthly_ticket_local_transport|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🚕</span>
+                                                        Taxi Ride, <small class="text-nowrap">8 km or 5 mi</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Taxi_Ride}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Taxi_Ride|div:ml.Taxi_Ride|mul:100|floatformat:0}}%;width:{{l1.Taxi_Ride|div:ml.Taxi_Ride|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Taxi_Ride}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Taxi_Ride|div:ml.Taxi_Ride|mul:100|floatformat:0}}%;width:{{l2.Taxi_Ride|div:ml.Taxi_Ride|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">⛽</span>
+                                                        Gas / Petrol, <small class="text-nowrap">1 L or 0.26 gal</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Gas_Petrol}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Gas_Petrol|div:ml.Gas_Petrol|mul:100|floatformat:0}}%;width:{{l1.Gas_Petrol|div:ml.Gas_Petrol|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Gas_Petrol}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Gas_Petrol|div:ml.Gas_Petrol|mul:100|floatformat:0}}%;width:{{l2.Gas_Petrol|div:ml.Gas_Petrol|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="3" class="text-center" scope="col">Groceries</th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🥛</span>
+                                                        Milk, <small class="text-nowrap">1 L or 1 qt</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Milk}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Milk|div:ml.Milk|mul:100|floatformat:0}}%;width:{{l1.Milk|div:ml.Milk|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Milk}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Milk|div:ml.Milk|mul:100|floatformat:0}}%;width:{{l2.Milk|div:ml.Milk|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🍞</span>
+                                                        Bread, <small class="text-nowrap">0.5 kg or 1.1 lb</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Bread}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Bread|div:ml.Bread|mul:100|floatformat:0}}%;width:{{l1.Bread|div:ml.Bread|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Bread}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Bread|div:ml.Bread|mul:100|floatformat:0}}%;width:{{l2.Bread|div:ml.Bread|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🍚</span>
+                                                        Rice, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Rice}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Rice|div:ml.Rice|mul:100|floatformat:0}}%;width:{{l1.Rice|div:ml.Rice|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Rice}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Rice|div:ml.Rice|mul:100|floatformat:0}}%;width:{{l2.Rice|div:ml.Rice|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🥚</span>
+                                                        Eggs, <small class="text-nowrap">x12</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Eggs}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Eggs|div:ml.Eggs|mul:100|floatformat:0}}%;width:{{l1.Eggs|div:ml.Eggs|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Eggs}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Eggs|div:ml.Eggs|mul:100|floatformat:0}}%;width:{{l2.Eggs|div:ml.Eggs|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🧀</span>
+                                                        Cheese, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Eggs}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Eggs|div:ml.Eggs|mul:100|floatformat:0}}%;width:{{l1.Eggs|div:ml.Eggs|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Eggs}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Eggs|div:ml.Eggs|mul:100|floatformat:0}}%;width:{{l2.Eggs|div:ml.Eggs|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🐔</span>
+                                                        Chicken Breast, <small class="text-nowrap">1 kg or
+                                                            2.2 lb</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Eggs}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Eggs|div:ml.Eggs|mul:100|floatformat:0}}%;width:{{l1.Eggs|div:ml.Eggs|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Eggs}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Eggs|div:ml.Eggs|mul:100|floatformat:0}}%;width:{{l2.Eggs|div:ml.Eggs|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🥩</span>
+                                                        Round Steak, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Round_Steak}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Round_Steak|div:ml.Round_Steak|mul:100|floatformat:0}}%;width:{{l1.Round_Steak|div:ml.Round_Steak|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Round_Steak}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Round_Steak|div:ml.Round_Steak|mul:100|floatformat:0}}%;width:{{l2.Round_Steak|div:ml.Round_Steak|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🍏</span>
+                                                        Apples, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Apples}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Apples|div:ml.Apples|mul:100|floatformat:0}}%;width:{{l1.Apples|div:ml.Apples|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Apples}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Apples|div:ml.Apples|mul:100|floatformat:0}}%;width:{{l2.Apples|div:ml.Apples|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🍌</span>
+                                                        Banana, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Banana}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Banana|div:ml.Banana|mul:100|floatformat:0}}%;width:{{l1.Banana|div:ml.Banana|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Banana}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Banana|div:ml.Banana|mul:100|floatformat:0}}%;width:{{l2.Banana|div:ml.Banana|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🍊</span>
+                                                        Oranges, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Oranges}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Oranges|div:ml.Oranges|mul:100|floatformat:0}}%;width:{{l1.Oranges|div:ml.Oranges|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Oranges}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Oranges|div:ml.Oranges|mul:100|floatformat:0}}%;width:{{l2.Oranges|div:ml.Oranges|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🍅</span>
+                                                        Tomato, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Tomato}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Tomato|div:ml.Tomato|mul:100|floatformat:0}}%;width:{{l1.Tomato|div:ml.Tomato|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Tomato}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Tomato|div:ml.Tomato|mul:100|floatformat:0}}%;width:{{l2.Tomato|div:ml.Tomato|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🥔</span>
+                                                        Potato, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Potato}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Potato|div:ml.Potato|mul:100|floatformat:0}}%;width:{{l1.Potato|div:ml.Potato|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Potato}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Potato|div:ml.Potato|mul:100|floatformat:0}}%;width:{{l2.Potato|div:ml.Potato|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🧅</span>
+                                                        Onion, <small class="text-nowrap">1 kg or 2.2 lb</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Onion}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Onion|div:ml.Onion|mul:100|floatformat:0}}%;width:{{l1.Onion|div:ml.Onion|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Onion}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Onion|div:ml.Onion|mul:100|floatformat:0}}%;width:{{l2.Onion|div:ml.Onion|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🌊</span>
+                                                        Water, <small class="text-nowrap">1 L or 1 qt</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Water}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Water|div:ml.Water|mul:100|floatformat:0}}%;width:{{l1.Water|div:ml.Water|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Water}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Water|div:ml.Water|mul:100|floatformat:0}}%;width:{{l2.Water|div:ml.Water|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🍹</span>
+                                                        Coca-Cola / Pepsi, <small class="text-nowrap">2 L or
+                                                            67.6 fl oz</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Coca_Cola_Pepsi}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Coca_Cola_Pepsi|div:ml.Coca_Cola_Pepsi|mul:100|floatformat:0}}%;width:{{l1.Coca_Cola_Pepsi|div:ml.Coca_Cola_Pepsi|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Coca_Cola_Pepsi}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Coca_Cola_Pepsi|div:ml.Coca_Cola_Pepsi|mul:100|floatformat:0}}%;width:{{l2.Coca_Cola_Pepsi|div:ml.Coca_Cola_Pepsi|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🍾</span>
+                                                        Wine (mid-priced), <small class="text-nowrap">750 mL
+                                                            bottle</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Wine_mid_price}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Wine_mid_price|div:ml.Wine_mid_price|mul:100|floatformat:0}}%;width:{{l1.Wine_mid_price|div:ml.Wine_mid_price|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Wine_mid_price}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Wine_mid_price|div:ml.Wine_mid_price|mul:100|floatformat:0}}%;width:{{l2.Wine_mid_price|div:ml.Wine_mid_price|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🍺</span>
+                                                        Beer, <small class="text-nowrap">0.5 L or 16 fl oz</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Beer}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Beer|div:ml.Beer|mul:100|floatformat:0}}%;width:{{l1.Beer|div:ml.Beer|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Beer}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Beer|div:ml.Beer|mul:100|floatformat:0}}%;width:{{l2.Beer|div:ml.Beer|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🚬</span>
+                                                        Cigarette pack
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Cigarette_pack}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Cigarette_pack|div:ml.Cigarette_pack|mul:100|floatformat:0}}%;width:{{l1.Cigarette_pack|div:ml.Cigarette_pack|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Cigarette_pack}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Cigarette_pack|div:ml.Cigarette_pack|mul:100|floatformat:0}}%;width:{{l2.Cigarette_pack|div:ml.Cigarette_pack|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">💊</span>
+                                                        Cold medicince, <small class="text-nowrap">1 week</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Cold_medicince}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Cold_medicince|div:ml.Cold_medicince|mul:100|floatformat:0}}%;width:{{l1.Cold_medicince|div:ml.Cold_medicince|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Cold_medicince}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Cold_medicince|div:ml.Cold_medicince|mul:100|floatformat:0}}%;width:{{l2.Cold_medicince|div:ml.Cold_medicince|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🧴</span>
+                                                        Hair Shampoo
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Hair_Shampoo}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Hair_Shampoo|div:ml.Hair_Shampoo|mul:100|floatformat:0}}%;width:{{l1.Hair_Shampoo|div:ml.Hair_Shampoo|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Hair_Shampoo}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Hair_Shampoo|div:ml.Hair_Shampoo|mul:100|floatformat:0}}%;width:{{l2.Hair_Shampoo|div:ml.Hair_Shampoo|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🧻</span>
+                                                        Toilet paper, <small class="text-nowrap">4 rolls</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Toilet_paper}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Toilet_paper|div:ml.Toilet_paper|mul:100|floatformat:0}}%;width:{{l1.Toilet_paper|div:ml.Toilet_paper|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Toilet_paper}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Toilet_paper|div:ml.Toilet_paper|mul:100|floatformat:0}}%;width:{{l2.Toilet_paper|div:ml.Toilet_paper|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">👄</span>
+                                                        Toothpaste, <small class="text-nowrap">1 tube</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Toothpaste}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Toothpaste|div:ml.Toothpaste|mul:100|floatformat:0}}%;width:{{l1.Toothpaste|div:ml.Toothpaste|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Toothpaste}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Toothpaste|div:ml.Toothpaste|mul:100|floatformat:0}}%;width:{{l2.Toothpaste|div:ml.Toothpaste|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="3" class="text-center" scope="col">Other</th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🏋️</span>
+                                                        Gym Membership, <small class="text-nowrap">1 month</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Gym_Membership}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Gym_Membership|div:ml.Gym_Membership|mul:100|floatformat:0}}%;width:{{l1.Gym_Membership|div:ml.Gym_Membership|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Gym_Membership}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Gym_Membership|div:ml.Gym_Membership|mul:100|floatformat:0}}%;width:{{l2.Gym_Membership|div:ml.Gym_Membership|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🎫</span>
+                                                        Cinema Ticket, <small class="text-nowrap">1 person</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Cinema_Ticket}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Cinema_Ticket|div:ml.Cinema_Ticket|mul:100|floatformat:0}}%;width:{{l1.Cinema_Ticket|div:ml.Cinema_Ticket|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Cinema_Ticket}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Cinema_Ticket|div:ml.Cinema_Ticket|mul:100|floatformat:0}}%;width:{{l2.Cinema_Ticket|div:ml.Cinema_Ticket|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">👩‍⚕️</span>
+                                                        Doctor &#39;s visit
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Doctors_visit}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Doctors_visit|div:ml.Doctors_visit|mul:100|floatformat:0}}%;width:{{l1.Doctors_visit|div:ml.Doctors_visit|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Doctors_visit}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Doctors_visit|div:ml.Doctors_visit|mul:100|floatformat:0}}%;width:{{l2.Doctors_visit|div:ml.Doctors_visit|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">💇</span>
+                                                        Haircut, <small class="text-nowrap">simple</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Haircut}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Haircut|div:ml.Haircut|mul:100|floatformat:0}}%;width:{{l1.Haircut|div:ml.Haircut|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Haircut}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Haircut|div:ml.Haircut|mul:100|floatformat:0}}%;width:{{l2.Haircut|div:ml.Haircut|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">👖</span>
+                                                        Brand Jeans
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Brand_Jeans}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Brand_Jeans|div:ml.Brand_Jeans|mul:100|floatformat:0}}%;width:{{l1.Brand_Jeans|div:ml.Brand_Jeans|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Brand_Jeans}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Brand_Jeans|div:ml.Brand_Jeans|mul:100|floatformat:0}}%;width:{{l2.Brand_Jeans|div:ml.Brand_Jeans|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">👟</span>
+                                                        Brand Sneakers
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Brand_Sneakers}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Brand_Sneakers|div:ml.Brand_Sneakers|mul:100|floatformat:0}}%;width:{{l1.Brand_Sneakers|div:ml.Brand_Sneakers|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Brand_Sneakers}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Brand_Sneakers|div:ml.Brand_Sneakers|mul:100|floatformat:0}}%;width:{{l2.Brand_Sneakers|div:ml.Brand_Sneakers|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">👶</span>
+                                                        Daycare or Preschool, <small class="text-nowrap">1 month</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="126.49">${{l1.Daycare_or_Preschool}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.Daycare_or_Preschool|div:ml.Daycare_or_Preschool|mul:100|floatformat:0}}%;width:{{l1.Daycare_or_Preschool|div:ml.Daycare_or_Preschool|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span data-usd="1182.43">${{l2.Daycare_or_Preschool}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.Daycare_or_Preschool|div:ml.Daycare_or_Preschool|mul:100|floatformat:0}}%;width:{{l2.Daycare_or_Preschool|div:ml.Daycare_or_Preschool|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <span class="font-weight-normal">🏫</span>
+                                                        International Primary School, <small
+                                                            class="text-nowrap">1 year</small>
+                                                    </th>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="126.49">${{l1.International_Primary_School}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l1.International_Primary_School|div:ml.International_Primary_School|mul:100|floatformat:0}}%;width:{{l1.International_Primary_School|div:ml.International_Primary_School|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="bar-table text-center">
+                                                            <span
+                                                                data-usd="1182.43">${{l2.International_Primary_School}}</span>
+                                                            <span class="bar-color"
+                                                                style="left:{{l2.International_Primary_School|div:ml.International_Primary_School|mul:100|floatformat:0}}%;width:{{l2.International_Primary_School|div:ml.International_Primary_School|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="lc-content"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="text-center h4" id="cities">Cities Cost of Living comparison</h2>
+                        <ul class="row geo-gutters mb-4 list-unstyled">
+                            {% for i in com_url %}
+                            <li class="col-6">
+                                <div class="geo-card"> <img class="geo-img-dimmer" src="/static/media/compare/{{i.0}}_{{i.1}}.jpg" alt="" loading="lazy"> <a
+                                        href="/compare/{{i.0}}/{{i.1}}" class="geo-img-dimmer">
+                                        <div class="vs-header1">
+                                            <div class="text-shadow-big"> {{i.0}} </div>
+                                            <div class="bar-vs"> <span data-usd="420.451">${{i.3}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{i.3|div:ml.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{i.3|div:ml.Total_with_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                        </div>
+                                        <div class="vs text-shadow-big">vs</div>
+                                        <div class="vs-header2">
+                                            <div class="bar-vs ml-auto"> <span data-usd="2604.429">${{i.2}}</span>
+                                                <span class="bar-color"
+                                                    style="left:{{i.2|div:ml.Total_with_rent_1p|mul:100|floatformat:0}}%;width:{{i.2|div:ml.Total_with_rent_1p|mul:100|floatformat:0|sub:100|mul:-1}}%"></span>
+                                            </div>
+                                            <div class="text-shadow-big"> {{i.1}} </div>
+                                        </div>
+                                    </a> </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+    <footer>
+        <div class="footer-bg text-white-50">
+            <div class="container-xl p-4">
+                <div class="row">
+                    <div class="col-12 order-3 col-md-5 order-md-1">
+                        <div class="logo w-50 mb-3"> <a href="/"> <img src="/static/logo/logo_400_100.svg" class="d-block" alt="site logo"
+                                    width="300" height="72" loading="lazy"> </a> </div>
+                        <p> An inclusive database, created with the contribution of people, that includes a price comparison tool for cost of living in 9294 cities across 197 countries worldwide. The cost of living is calculated based on a consumer basket representing a moderate lifestyle in developed nations, which may appear relatively higher in certain least developed countries where sustaining such a standard of living is costly. </p>
+
+                    </div>
+                    <div class="col-6 order-1 mb-4 col-md-4 order-md-2 mb-md-2">
+                        <p class="text-bold text-white mb-4">Cost of Living</p>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"> <a href="/cost/United-States">United States</a>
+                            </li>
+                            <li class="mb-2"> <a href="/cost/Canada">Canada</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-Kingdom">United Kingdom</a>
+                            </li>
+                            <li class="mb-2"> <a href="/cost/Singapore">Singapore</a> </li>
+                            <li class="mb-2"> <a href="/cost/Australia">Australia</a> </li>
+                            <li class="mb-2"> <a href="/cost/New-Zealand">New Zealand</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-States/New-York-State">New York
+                                    City</a> </li>
+                            <li class="mb-2"> <a href="/cost/United-States/Kentucky/london">London</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-6 order-2 mb-4 col-md-3 order-md-3 mb-md-2">
+                        <p class="text-bold text-white mb-4">Best places in</p>
+                        <ul<li class="mb-2"> <a href="/best/United-States/">United States</a>
+                        </li>
+                        <li class="mb-2"> <a href="/best/Canada/">Canada</a> </li>
+                        <li class="mb-2"> <a href="/best/United-Kingdom/">United Kingdom</a>
+                        </li>
+                        <li class="mb-2"> <a href="/best/Australia/">Australia</a> </li>
+                        <li class="mb-2"> <a href="/best/India/">India</a> </li>
+                        <li class="mb-2"> <a href="/best/Germany/">Germany</a> </li>
+                        <li class="mb-2"> <a href="/best/Netherlands/">Netherlands</a> </li>
+                        <li class="mb-2"> <a href="/best/Sweden/">Sweden</a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="subfooter-bg text-white-50">
+            <div class="container-xl">
+                <div class="row">
+                    <div class="col-12 col-sm-6 text-center text-sm-left">
+                        <p class="my-0">© 2023 IndexOfLiving</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
