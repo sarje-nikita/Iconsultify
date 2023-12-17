@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Free Online Business Directory | DomainName </title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <link rel="canonical" href="/" />
+    <link rel="stylesheet" type="text/css" href="/static/stylesheets/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap" rel="stylesheet">
+    <style>
+        html,
+        body {
+            font-family: 'Lexend', sans-serif;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+    </style>
+
+    <style>
+        h3 {
+            font-weight: bold;
+        }
+
+        .shadow-box {
+            margin-top: 10px;
+            margin-right: 0px;
+            text-align: left;
+            border: 1px solid #777;
+            padding: 10px;
+            -webkit-box-shadow: 0 10px 6px -6px #777;
+            -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+            margin-left: 0px;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .div-zm {
+            transition: transform 0.5s;
+        }
+
+        .div-zm:hover {}
+
+        .checked {
+            color: orange;
+        }
+    </style>
+    <style>
+        a {
+            color: #415939;
+        }
+
+        a:hover {
+            color: #3b5233;
+        }
+    </style>
+    <style>
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination-list {
+            display: inline-block;
+            padding: 0;
+            list-style: none;
+        }
+
+        .pagination-item {
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .pagination-link {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .pagination-link:hover,
+        .pagination-link.active {
+            background-color: #415939;
+            border-color: #415939;
+            color: #fff;
+        }
+
+        .pagination-container {
+            text-align: center;
+            margin-top: 20px;
+            /* Adjust as needed */
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".pagination-link").on("click", function (event) {
+                event.preventDefault();
+                const targetHref = $(this).attr("href");
+
+                $("body").fadeOut(300, function () {
+                    window.location.href = targetHref;
+                });
+            });
+        });
+    </script>
+
+
+</head>
+
+<body>
+    <header class="container-fuild header">
+        <div class="container">
+            <div class="flex align-items justify-content">
+                <div class="logo" style="text-shadow: 2px 2px 2px black;">
+                    <a href="/" style="font-size:24px; color:#FFFFFF; font-weight:bold;">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        listing <span style="font-size:14px; color:yellow"></span>
+                    </a>
+                </div>
+                <div class="menu xs-hide sm-hide" itemscope itemtype="https://schema.org/SiteNavigationElement">
+                    <ul style="font-size:16px;">
+                        <li>
+                            <a title="USA Business Directory" href="/#us">USA</a>
+                        </li>
+                        <li>
+                            <a title="Add Business" href="/b/contact">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md-hide lg-hide">
+                    <div class="menu-btn">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+
+        <div class="row" itemscope itemtype="http://schema.org/Article">
+            <div class="xs-12">
+                <div class="sec-head-row text-center" id="us">
+                    <div class="sec-head">
+                        <h1 itemprop="headline" class="page-title">United States Business Directory</h1>
+                        <h3>Find best businesses in United States</h3>
+                    </div>
+                </div>
+
+                {% for i, val in page_data %}
+                <div class="description">
+                    <div class="btn btn-lg btn-success">{{ i }}</div>
+                    <div itemprop="articleBody" class="generat-btn-wrapper">
+                        {% for j in val %}
+                        <a title="Best businesses in {{ j }}" itemprop="url" href="/us/{{i}}/{{ j }}"
+                            class="generat-btn justify-content flex align-items">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            {{ j }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="pagination-container">
+                    <div class="pagination">
+                        <ul class="pagination-list">
+                            {% if page_data.has_previous %}
+                            <li class="pagination-item"><a href="?page=1" class="pagination-link">&laquo; First</a></li>
+                            <li class="pagination-item"><a href="?page={{ page_data.previous_page_number }}"
+                                    class="pagination-link">Previous</a></li>
+                            {% endif %}
+
+                            <li class="pagination-item active"><a class="pagination-link"
+                                    href="?page={{ page_data.number }}">{{ page_data.number }}</a></li>
+
+                            {% if page_data.has_next %}
+                            <li class="pagination-item"><a href="?page={{ page_data.next_page_number }}"
+                                    class="pagination-link">Next</a></li>
+                            <li class="pagination-item"><a href="?page={{ page_data.paginator.num_pages }}"
+                                    class="pagination-link">Last &raquo;</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="container-fluid footer">
+        <div class="container" itemscope itemtype="https://schema.org/WPFooter">
+            <div class="row">
+                <div class="xs-12" style="text-align:center;color:#ffffff">
+                    <p>
+                        We have extracted the best result for you by using lot's of research on internet and listed some
+                        best businesses on our web portal, If you want to list your business on our premium business
+                        directory or you have any other query in your mind please
+                        <a href="/contact" style="color:yellow;">
+                            <b>Contact Us</b>
+                        </a>
+                        .
+                    </p>
+
+                    <a title="USA Business Directory" href="/#us" class="btn btn-success"
+                        style="margin-top:8px;">USA</a>
+                    </p>
+                    <hr />
+                    <div class="pull-right hidden-xs">
+                        <a href="/about" type="button">About Us</a>
+                        | <a href="/contact" type="button">Contact Us</a>
+                        |
+                        <a href="/terms-and-conditions">Terms &amp;Conditions</a>
+                        |
+                        <a href="/policy">Privacy Policy</a>
+                        |
+                        <a href="/disclaimer">Disclaimer</a>
+                        |
+
+                    </div>
+                    <strong>
+                        Copyright © 2023 <a href="/">listing.us.com</a>
+                        .
+                    </strong>
+                    All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+<h1>XML Sitemap</h1>
+<p>You can find more information about XML sitemaps on <a href="https://www.sitemaps.org/">sitemaps.org</a>.</p>
+<p>This XML Sitemap Index file contains {{ sitemap_urls|length }} sitemaps.</p>
+
+
+<ul>
+    {% for sitemap_url in sitemap_urls %}
+    <li>
+        <a href="{{ sitemap_url }}">{{ sitemap_url }}</a>
+    </li>
+    {% endfor %}
+</ul>

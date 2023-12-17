@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Free Online Business Directory | DomainName </title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <link rel="canonical" href="" />
+    <link rel="stylesheet" type="text/css" href="/static/stylesheets/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap" rel="stylesheet">
+    <style>
+        html,
+        body {
+            font-family: 'Lexend', sans-serif;
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+    </style>
+
+    <style>
+        h3 {
+            font-weight: bold;
+        }
+
+        .shadow-box {
+            margin-top: 10px;
+            margin-right: 0px;
+            text-align: left;
+            border: 1px solid #777;
+            padding: 10px;
+            -webkit-box-shadow: 0 10px 6px -6px #777;
+            -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+            margin-left: 0px;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .div-zm {
+            transition: transform 0.5s;
+        }
+
+        .div-zm:hover {}
+
+        .checked {
+            color: orange;
+        }
+    </style>
+    <style>
+        a {
+            color: #415939;
+        }
+
+        a:hover {
+            color: #3b5233;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="container-fuild header">
+        <div class="container">
+            <div class="flex align-items justify-content">
+                <div class="logo" style="text-shadow: 2px 2px 2px black;">
+                    <a href="/" style="font-size:24px; color:#FFFFFF; font-weight:bold;">
+                        <i class="fa fa-map-marker" aria-hidden="true"></i>
+                        DomainName <span style="font-size:14px; color:yellow"></span>
+                    </a>
+                </div>
+                <div class="menu xs-hide sm-hide" itemscope itemtype="https://schema.org/SiteNavigationElement">
+                    <ul style="font-size:16px;">
+                        <li>
+                            <a title="USA Business Directory" href="/#us">USA</a>
+                        </li>
+                        <li>
+                            <a title="Add Business" href="/b/contact">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md-hide lg-hide">
+                    <div class="menu-btn">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row" style="text-align:center; margin-top:8px; height:100px;">
+         
+        </div>
+        <div class="breadcrumb-wrap">
+            <ul>
+                <li>
+                    <a title="Home" itemprop="url" href="/">
+                        <svg version="1.1" x="0px" y="0px" width="18px" height="18px" viewBox="0 0 512 512">
+                            <g>
+                                <path
+                                    d="M512,296l-96-96V56h-64v80l-96-96L0,296v16h64v160h160v-96h64v96h160V312h64V296z">
+                                </path>
+                            </g>
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a title="United States" itemprop="url" href="/">United States</a>
+                </li>
+                <li class="current">
+                    <a title="{{city}}" itemprop="url" href="/us/{{state}}/{{city}}">{{city}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="xs-12">
+
+                {% for i, val in main_business.items %}
+
+                <div class="sec-head-row text-center">
+                    <div class="sec-head">
+                        <h1 itemprop="headline" class="page-title">{{i}} </h1>
+                    </div>
+                </div>
+                <div class="description">
+                    <div class="generat-btn-wrapper">
+                        {% for j in val %}
+                        <a title="Best {{j}}  in {{city}}" itemprop="url" href="/us/{{state}}/{{city}}/{{j}}"
+                            class="generat-btn justify-content flex align-items">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            {{j}}
+                        </a>
+                        {% endfor %}  
+                        
+                    </div>
+                </div>
+
+                {% endfor %}
+
+
+                <hr />
+                
+                <!-- <h1 style="text-align:center">Other Categories</h1>
+                <ul>
+
+
+
+
+                    <li style="padding:5px 5px 5px 5px;">
+                        <strong>
+                            <a href="/b/v/us/huntsville/accommodation">Accommodation</a>
+                        </strong>
+                        <ol>
+
+
+
+                            <li style="display:inline; padding:10px 10px 10px 10px;">
+                                <b>1.</b>
+                                </b><a href="/b/v/us/huntsville/apartments">Apartments</a>
+                            </li>
+                           
+
+
+                        </ol>
+                    </li> -->
+
+
+
+
+
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer class="container-fluid footer">
+        <div class="container" itemscope itemtype="https://schema.org/WPFooter">
+            <div class="row">
+                <div class="xs-12" style="text-align:center;color:#ffffff">
+                    <p>
+                        We have extracted the best result for you by using lot's of research on internet and listed some
+                        best businesses on our web portal, If you want to list your business on our premium business
+                        directory or you have any other query in your mind please
+                        <a href="/b/contact" style="color:yellow;">
+                            <b>Contact Us</b>
+                        </a>
+                        .
+                    </p>
+                    <a title="USA Business Directory" href="/p/c/us" class="btn btn-success"
+                        style="margin-top:8px;">USA</a>
+                    </p>
+                    <hr />
+                    <div class="pull-right hidden-xs">
+                        <a href="/pages/about" type="button">About Us</a>
+                        | <a href="/pages/contact" type="button">Contact Us</a>
+                        |
+                        <a href="/pages/terms_and_conditions">Terms &amp;Conditions</a>
+                        |
+                        <a href="/pages/privacy_policy">Privacy Policy</a>
+                        |
+                        <a href="/pages/disclaimer">Disclaimer</a>
+                        |
+
+                    </div>
+                    <strong>
+                        Copyright © 2023 <a href="https://datagemba.com">DataGemba.Com</a>
+                        .
+                    </strong>
+                    All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

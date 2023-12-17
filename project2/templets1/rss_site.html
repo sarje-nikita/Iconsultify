@@ -1,0 +1,12 @@
+<h1>rss feed</h1>
+
+<!-- <!-- <p>You can find more information about XML sitemaps on <a href="https://www.sitemaps.org/">sitemaps.org</a>.</p> -->
+<!-- <p>This XML Sitemap Index file contains {{ sitemap_urls|length }} sitemaps.</p> --> 
+
+<ul>
+    {% for feed_url in feed_urls %}
+    <li>
+        <a href="{{ feed_url }}">{{ feed_url }}</a>
+    </li>
+    {% endfor %}
+</ul>
